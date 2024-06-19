@@ -1,7 +1,6 @@
 import React from 'react';
 
 import useBooks from './../../api/hooks/useBooks';
-import './../../styles/css/index.css'
 
 function App() {
     let books = useBooks("CLR");                                                                   

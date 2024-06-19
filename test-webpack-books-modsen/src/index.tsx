@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App/index';
 
-import './styles/css/index.css'
+import './styles/index.scss'
 
 // GOOGLE API KEY: AIzaSyClCm-rEgwrSBygLqdk1VVI0_0KBaySByc
 
