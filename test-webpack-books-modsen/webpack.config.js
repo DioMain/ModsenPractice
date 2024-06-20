@@ -32,9 +32,12 @@ module.exports = {
   },
   devtool: 'source-map',
   devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
     compress: true,
     port: 8080,
-    allowedHosts: [ "onrender.com", "localhost" ]
+    allowedHosts: 'all', // Разрешить все хосты
   },
   plugins: [
     new HtmlWebpackPlugin({
