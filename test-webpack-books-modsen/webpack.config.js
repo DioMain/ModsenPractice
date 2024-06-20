@@ -31,10 +31,6 @@ module.exports = {
     ],
   },
   devtool: 'source-map',
-  devServer: {
-    compress: true,
-    port: 9000,
-  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
