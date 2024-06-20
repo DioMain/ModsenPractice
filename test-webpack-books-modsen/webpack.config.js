@@ -31,6 +31,11 @@ module.exports = {
     ],
   },
   devtool: 'source-map',
+  devServer: {
+    compress: true,
+    port: 8080,
+    allowedHosts: [ "onrender.com", "localhost" ]
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
