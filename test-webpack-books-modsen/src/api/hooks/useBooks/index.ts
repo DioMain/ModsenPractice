@@ -1,30 +1,20 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import BookSearchResult from "../../models/BookSearchResult";
 
-const API_KEY = 'AIzaSyClCm-rEgwrSBygLqdk1VVI0_0KBaySByc';
-const BASE_URL = 'https://www.googleapis.com/books/v1/volumes';
+const apiurl = process.env.BASE_API_URL;
+const apikey = process.env.API_KEY;
 
-interface Book {
-    title: string
-}
-
-class BookSearchResult {
-    volumeInfo: Book = { title: "" }
-}
-
-function useBooks(search: string): BookSearchResult[] {
-    const [result, setResult] = useState<BookSearchResult[]>([]);
-
-    console.log("work");
+function useBooks(search: string): BookSearchResult[] | undefined {
+    const [result, setResult] = useState<BookSearchResult[]>();
 
     useEffect(() => {
-        axios.get(BASE_URL, {
-            params: {   
+        axios.get(apiurl as string, {
+            params: {
                 q: search,
-                key: API_KEY
+                key: apikey
             }
         }).then(res => {
-            console.log(res.data.items);
             setResult(res.data.items);
         });
     }, [search]);

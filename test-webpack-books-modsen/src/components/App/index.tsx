@@ -8,9 +8,16 @@ function App() {
     return (
         <>
             {
-                books.map((value) => {
-                    return (<div>{value.volumeInfo.title}</div>)
-                })
+                books != undefined ?
+                (
+                    books.map((value) => {
+                        return (<div>{value.volumeInfo.title}</div>)
+                    })
+                )
+                :
+                (
+                    <div>loading...</div>
+                )
             }
         </>
     )
