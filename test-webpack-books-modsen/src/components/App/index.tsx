@@ -3,12 +3,12 @@ import SearchBar from '../searchBar';
 import { useAppSelector } from '../../redux/hooks';
 import CartPage from '../cartPage';
 import SearchPage from '../searchPage';
-import SearchData from '../../types/searchData';
+import BookSearchData from '../../types/bookSearchData';
 
 function App() {
   const currnetBook = useAppSelector(state => state.book.value);
 
-  const [searchInfo, setSearchInfo] = useState<SearchData>({ search: "" });
+  const [searchInfo, setSearchInfo] = useState<BookSearchData>({ search: "" });
 
   return (
     <>

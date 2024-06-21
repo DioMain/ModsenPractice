@@ -1,10 +1,10 @@
 import React from "react";
-import SearchData from "../../types/searchData";
+import BookSearchData from "../../types/bookSearchData";
 import useBooks from "../../hooks/useBooks";
 import LoadState from "../../enums/loadState";
 import BookElement from "../bookElement";
 
-const SearchPage: React.FC<{ searchInfo: SearchData }> = ({ searchInfo }) => {
+const SearchPage: React.FC<{ searchInfo: BookSearchData }> = ({ searchInfo }) => {
 
   const books = useBooks(searchInfo.search);
 
