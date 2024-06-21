@@ -1,15 +1,4 @@
-function pigIt(str = ""){
-    let items = [];
+let a = BigInt("123");
+let b = BigInt("1235");
 
-    str.split(" ").forEach((item) => {
-        if (item === '!' || item === '?' || item === "." || item === ",")
-            items.push(item);
-        else
-            items.push(`${item.slice(1)}${item[0]}ya`);
-    });
-
-    return items.join(' ');
-}
-
-console.log(pigIt('Pig latin is cool'));
-console.log(pigIt('Hello world !'));
+console.log((a + b).toString());
