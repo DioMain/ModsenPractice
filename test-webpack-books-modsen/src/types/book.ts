@@ -1,7 +1,7 @@
 interface Book {
     title: string;
 
-    /*imageLinks:  {
+    imageLinks:  {
         smallThumbnail: string;
         thumbnail: string;
         medium: string;
@@ -32,7 +32,7 @@ interface Book {
     contentVersion: string;
     language: string;
     infoLink: string;
-    canonicalVolumeLink: string;*/
+    canonicalVolumeLink: string;
 }
 
 export default Book;

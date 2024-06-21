@@ -4,9 +4,9 @@ import Book from "../../types/book";
 const CartPage: React.FC<{ book: Book }> = ({ book }) => {
 
   return (
-    <>
+    <div>
 
-    </>
+    </div>
   );
 }
 

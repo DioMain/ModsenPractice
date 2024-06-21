@@ -1,18 +1,17 @@
 import React, { useCallback } from "react";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { setBook } from "../../redux/slicers/bookSlice";
 
-const SearchBar: React.FC = () => {
-  let dispatch = useAppDispatch();
+let searchText = "";
 
-  let click = useCallback(() => {
-    dispatch(setBook({ title: "asd" }))
-  }, [dispatch]);
+const SearchBar: React.FC<{ onSearchSubmit: Function }> = ({ onSearchSubmit }) => {
+  const submit = useCallback(() => {
+    onSearchSubmit({ search: searchText });
+  }, [onSearchSubmit]);
 
   return (
-    <>
-      <input type="button" onClick={click} value={"adsd"}/>
-    </>
+    <header>
+      <input type="text" placeholder="book name" onChange={(evt) => { searchText = evt.target.value }}/>
+      <input type="button" value="search" onClick={submit}/>
+    </header>
   );
 }
 

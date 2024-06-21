@@ -1,15 +1,29 @@
 import React from "react";
+import SearchData from "../../types/searchData";
+import useBooks from "../../hooks/useBooks";
+import LoadState from "../../enums/loadState";
+import BookElement from "../bookElement";
 
-type SearchPageProps = {
-  search: string
-}
+const SearchPage: React.FC<{ searchInfo: SearchData }> = ({ searchInfo }) => {
 
-const SearchPage: React.FC<{ searchInfo: SearchPageProps }> = ({ searchInfo }) => {
+  const books = useBooks(searchInfo.search);
+
+  if (books.state == LoadState.Loading)
+    return (<div>Loading...</div>);
+
+  if (books.state == LoadState.Failed)
+    return (<div>ERROR: {books.error?.message}</div>);
+
+  console.log(books.data);
 
   return (
-    <>
-
-    </>
+    <div>
+      {
+        books.data.map((item, i) => {
+          return (<div key={i}><BookElement book={item.volumeInfo}/><br/></div>);
+        })
+      }
+    </div>
   );
 }
 
