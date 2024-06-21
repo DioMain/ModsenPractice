@@ -1,12 +1,17 @@
 import React from 'react';
-import useBooks from '../../hooks/useBooks';
-import LoadState from '../../enums/loadState';
+import SearchBar from '../searchBar';
+import { useAppSelector } from '../../redux/hooks';
 
 function App() {
+  const book = useAppSelector(state => state.book.value);
 
   return (
     <>
+      <SearchBar/>
 
+      {
+        book != undefined ? <div>HAVE</div> : <div>HAVEN`T</div>
+      }
     </>
   )
 }
