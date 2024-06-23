@@ -1,5 +1,7 @@
 import React, { useCallback } from "react";
 
+import '../styles/searchBar.scss';
+
 let searchText = "";
 
 const SearchBar: React.FC<{ onSearchSubmit: Function }> = ({ onSearchSubmit }) => {
@@ -9,8 +11,7 @@ const SearchBar: React.FC<{ onSearchSubmit: Function }> = ({ onSearchSubmit }) =
 
   return (
     <header>
-      <input type="text" placeholder="book name" onChange={(evt) => { searchText = evt.target.value }}/>
-      <input type="button" value="search" onClick={submit}/>
+      <input className="asul-bold" type="text" placeholder="book name" onChange={(evt) => { searchText = evt.target.value }}/>
     </header>
   );
 }

@@ -1,3 +1,17 @@
+@import './elements/searchField.scss';
+
 * {
     font-size: 16px;
+}
+
+.asul-regular {
+    font-family: "Asul", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.asul-bold {
+    font-family: "Asul", serif;
+    font-weight: 700;
+    font-style: normal;
 }

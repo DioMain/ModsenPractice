@@ -1,5 +1,7 @@
 import React from "react";
-import Book from "../../types/book";
+import Book from "../types/book";
+
+import '../styles/bookElement.scss';
 
 const BookElement: React.FC<{ book: Book }> = ({ book }) => {
 

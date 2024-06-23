@@ -5,6 +5,7 @@ interface BookSearchResult {
     etag: string;
     selfLink: string;
     volumeInfo: Book;
+    totalItems: number;
 }
 
 export default BookSearchResult;

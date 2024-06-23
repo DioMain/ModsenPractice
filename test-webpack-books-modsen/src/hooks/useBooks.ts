@@ -6,6 +6,9 @@ import LoadState from "../enums/loadState";
 import { AxiosError } from "axios";
 
 function useBooks(search: string) {
+    if (search === "")
+        return { data: [], state: LoadState.Success }
+
     const [data, setData] = useState<BookSearchResult[]>([]);
     const [state, setState] = useState<LoadState>(LoadState.Loading);
     const [error, setError] = useState<AxiosError>();
@@ -19,6 +22,9 @@ function useBooks(search: string) {
             setState(LoadState.Failed);
         })
     }, [search]);
+
+    if (data == undefined)
+        return { data: [], state: LoadState.Success }
 
     return { data, state, error };
 }
