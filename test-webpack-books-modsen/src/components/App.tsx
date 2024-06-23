@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import SearchBar from './SearchBar';
+import SearchBar from './searchBar';
 import { useAppSelector } from '../redux/hooks';
-import CartPage from './CartPage';
-import SearchPage from './SearchPage';
+import CartPage from './cartPage';
+import SearchPage from './searchPage';
 import BookSearchData from '../types/bookSearchData';
 
 function App() {

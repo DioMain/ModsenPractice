@@ -2,7 +2,7 @@ import React from "react";
 import BookSearchData from "../types/bookSearchData";
 import useBooks from "../hooks/useBooks";
 import LoadState from "../enums/loadState";
-import BookElement from "../components/BookElement";
+import BookElement from "./bookElement";
 
 import '../styles/searchPage.scss';
 

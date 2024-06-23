@@ -1,17 +1,19 @@
-@import './elements/searchField.scss';
-
 * {
     font-size: 16px;
 }
 
-.asul-regular {
-    font-family: "Asul", serif;
+body {
+    margin: 0;
+}
+
+.sawarabi-gothic-regular {
+    font-family: "Sawarabi Gothic", sans-serif;
     font-weight: 400;
     font-style: normal;
 }
 
-.asul-bold {
-    font-family: "Asul", serif;
-    font-weight: 700;
+.sawarabi-gothic-bold {
+    font-family: "Sawarabi Gothic", sans-serif;
+    font-weight: 600;
     font-style: normal;
 }

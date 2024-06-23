@@ -1,0 +1,13 @@
+.inputselect {
+    border: 2px solid gainsboro;
+    padding: 2px;
+
+    option {
+        font-family: inherit;
+        font-size: inherit;
+    }
+
+    &:focus {
+        outline: 2px solid black;
+    }
+}

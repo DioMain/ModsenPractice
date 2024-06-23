@@ -1,0 +1,66 @@
+$input-height: 32px;
+
+.searchbar {
+  height: max-content;
+
+  padding: 16px;
+
+  background-size: cover;
+  background-image: url("../assets/searchBarBG.jpeg");
+
+  display: flex;
+
+  flex-direction: column;
+
+  &-title {
+    font-size: 64px;
+    color: white;
+
+    text-align: center;
+  }
+
+  &-row1 {
+    display: flex;
+
+    justify-content: center;
+
+    .inputsearch {
+      height: $input-height;
+      width: 512px;
+    }
+  }
+
+  &-row2 {
+    display: flex;
+
+    margin-top: 32px;
+
+    
+
+    &-col {
+      .inputselect {
+        height: $input-height;
+        width: 196px;
+      }
+  
+      &-title {
+        color: white;
+      }
+    }
+
+    @media screen and (min-width: 600px) {
+      justify-content: center;
+
+      margin-left: 64px;
+      margin-right: 64px;
+
+      gap: 128px;
+    }
+
+    @media screen and (max-width: 599px) {
+      flex-direction: column;
+
+      gap: 32px;
+    }
+  }
+}

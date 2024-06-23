@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/App';
+import App from './components/app';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 
-import './styles/index.scss'
+import './styles/index.scss';
 
 // GOOGLE API KEY: AIzaSyClCm-rEgwrSBygLqdk1VVI0_0KBaySByc
 
