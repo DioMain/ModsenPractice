@@ -1,38 +1,43 @@
 interface Book {
-    title: string;
+    id: string;
+    etag: string;
+    selfLink: string;
+    volumeInfo: {
+        title: string;
 
-    imageLinks:  {
-        smallThumbnail: string;
-        thumbnail: string;
-        medium: string;
-        large: string;
-        extraLarge: string;
-    };
+        imageLinks: {
+            smallThumbnail: string;
+            thumbnail: string;
+            medium: string;
+            large: string;
+            extraLarge: string;
+        };
 
-    authors: string[];
-    
-    publisher: string;
-    publishedDate: Date;
-    description: string;
-    pageCount: number;
+        authors: string[];
 
-    dimensions: {
-        height: string;
-        width: string;
-        thickness: string;
-    };
+        publisher: string;
+        publishedDate: Date;
+        description: string;
+        pageCount: number;
 
-    printType: string;
-    mainCategory: string;
-    categories: string[];
+        dimensions: {
+            height: string;
+            width: string;
+            thickness: string;
+        };
 
-    averageRating: number;
-    ractingsCount: number;
+        printType: string;
+        mainCategory: string;
+        categories: string[];
 
-    contentVersion: string;
-    language: string;
-    infoLink: string;
-    canonicalVolumeLink: string;
+        averageRating: number;
+        ractingsCount: number;
+
+        contentVersion: string;
+        language: string;
+        infoLink: string;
+        canonicalVolumeLink: string;
+    }
 }
 
 export default Book;

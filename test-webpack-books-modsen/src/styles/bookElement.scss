@@ -1,0 +1,74 @@
+@import "./fonts";
+
+$img-w: 148px;
+
+$bg-color-normal: rgb(237, 237, 237);
+$bg-color-hover: rgb(220, 220, 220);
+
+.bookelement {
+    @include sawarabi-gothic-regular;
+
+    animation: 0.1s linear normal-kf;
+    background-color: $bg-color-normal;
+
+    cursor: pointer;
+
+    padding: 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    width: 240px;
+
+    &-img {
+        display: flex;
+        justify-content: center;
+
+        margin-bottom: 16px;
+
+        img {
+            box-shadow: 10px 10px 15px rgb(95, 95, 95);
+
+            width: $img-w;
+            height: $img-w * 1.35;
+        }
+    }
+
+    &-title {
+        font-weight: 600;
+        text-align: center;
+    }
+
+    &-category {
+        color: rgb(200, 200, 200);
+        text-decoration: underline;
+    }
+
+    &-author {
+        color: rgb(190, 190, 190);
+    }
+
+    &:hover {     
+        animation: 0.1s linear hover-kf;
+        background-color: $bg-color-hover;
+    }
+}
+
+@keyframes hover-kf {
+    0% {
+        background-color: $bg-color-normal;
+    }
+    100% {
+        background-color: $bg-color-hover;
+    }
+}
+
+@keyframes normal-kf {
+    0% {
+        background-color: $bg-color-hover;
+    }
+    100% {
+        background-color: $bg-color-normal;
+    }
+}

@@ -6,7 +6,7 @@ import '../styles/cartPage.scss';
 const CartPage: React.FC<{ book: Book }> = ({ book }) => {
 
   return (
-    <div>
+    <div className="cartpage">
 
     </div>
   );

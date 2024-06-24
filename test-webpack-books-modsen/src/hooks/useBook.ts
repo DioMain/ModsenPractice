@@ -10,7 +10,7 @@ function useBook(bookId: string) {
     const [state, setState] = useState<LoadState>(LoadState.Loading);
     const [error, setError] = useState<AxiosError>();
 
-    useEffect(() => {
+    /*useEffect(() => {
         GoogleBooksApiQueries.GetBook(bookId).then(Data => {
             setData(Data);
             setState(LoadState.Success);
@@ -18,7 +18,7 @@ function useBook(bookId: string) {
             setError(error);
             setState(LoadState.Failed);
         })
-    }, [bookId]);
+    }, [bookId]);*/
 
     return { data, state, error };
 }

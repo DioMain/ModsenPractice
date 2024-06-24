@@ -3,19 +3,17 @@ import SearchBar from './searchBar';
 import { useAppSelector } from '../redux/hooks';
 import CartPage from './cartPage';
 import SearchPage from './searchPage';
-import BookSearchData from '../types/bookSearchData';
+import GoogleBooksApiOptions from '../types/googleBooksApiOptions';
 
 function App() {
   const currnetBook = useAppSelector(state => state.book.value);
 
-  const [searchInfo, setSearchInfo] = useState<BookSearchData>({ search: "" });
-
   return (
     <>
-      <SearchBar onSearchSubmit={setSearchInfo}/>
+      <SearchBar/>
 
       {
-        currnetBook != undefined ? <CartPage book={currnetBook}/> : <SearchPage searchInfo={searchInfo}/>
+        currnetBook != undefined ? <CartPage book={currnetBook}/> : <SearchPage/>
       }
     </>
   )

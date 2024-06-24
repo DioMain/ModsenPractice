@@ -9,15 +9,12 @@ interface InputSearchProps extends PropsBase {
 }
 
 const InputSearch: React.FC<InputSearchProps> = ({ onSearchSubmit, onTextChanged, style, className }) => {
-    const [text, setText] = useState("");
-
     const textChangedCallback = useCallback((evt: React.ChangeEvent<HTMLInputElement>) => {
-      setText(evt.target.value);
-
+      
       if (onTextChanged != undefined)
-        onTextChanged(text);
+        onTextChanged(evt.target.value);
 
-    }, [setText, onTextChanged, text]);
+    }, [onTextChanged]);
 
     const submitCallback = useCallback(() => {
       
