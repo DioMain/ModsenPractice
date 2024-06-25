@@ -8,7 +8,7 @@ export const bookSlice = createSlice({
     name: "book",
     initialState,
     reducers: {
-        setBook: (state, action: PayloadAction<Book>) => {
+        setBook: (state, action: PayloadAction<Book | undefined>) => {
             state.value = action.payload;
         },
         dropBook: (state) => {

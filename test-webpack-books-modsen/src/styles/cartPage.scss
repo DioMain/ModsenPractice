@@ -1,3 +1,78 @@
-.cartpage {
+@import "./fonts";
 
+$imageW1: 280px;
+$imageW2: 128px;
+$imageW3: 196px;
+
+.cartpage {
+  @include sawarabi-gothic-regular;
+
+  display: flex;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+
+  &-img {
+    background-color: gainsboro;
+
+    @media screen and (min-width: 600px) {
+      width: 30%;
+    }
+
+    display: flex;
+    justify-content: center;
+
+    img {
+      box-shadow: 10px 10px 10px rgb(123, 123, 123);
+
+      @media screen and (min-width: 1168px) {
+        width: $imageW1;
+        height: $imageW1 * 1.4;
+      }
+      @media screen and (max-width: 1168px) {
+        width: $imageW3;
+        height: $imageW3 * 1.4;
+      }
+      @media screen and (max-width: 860px) {
+        width: $imageW2;
+        height: $imageW2 * 1.4;
+      }
+
+      margin-top: 48px;
+      margin-bottom: 48px;
+    }
+  }
+
+  &-content {
+    @media screen and (min-width: 600px) {
+      width: 70%;
+    }
+
+    padding: 24px;
+
+    &-category {
+      margin-bottom: 16px;
+    }
+    &-title {
+      margin-bottom: 16px;
+
+      font-weight: 600;
+
+      font-size: 28px;
+    }
+    &-author {
+      color: gray;
+    }
+    &-description {
+      border: 1px solid gray;
+
+      padding: 16px;
+      margin-top: 16px;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
 }

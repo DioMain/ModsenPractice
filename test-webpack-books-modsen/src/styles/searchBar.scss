@@ -13,6 +13,8 @@ $input-height: 32px;
   flex-direction: column;
 
   &-title {
+    margin: 4px;
+
     font-size: 64px;
     color: white;
 
@@ -33,8 +35,8 @@ $input-height: 32px;
   &-row2 {
     display: flex;
 
-    margin-top: 32px;
-    margin-bottom: 32px;
+    margin-top: 16px;
+    margin-bottom: 16px;
 
     &-col {
       .inputselect {
