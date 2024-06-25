@@ -9,7 +9,7 @@ import { setSearchInfo } from "../redux/slicers/searchInfoSlice";
 const SearchBar: React.FC = () => {
   const search = useRef("");
   const category = useRef("all");
-  const filter = useRef("revelance");
+  const filter = useRef("relevance");
 
   const dispatch = useAppDispatch();
   
@@ -17,9 +17,13 @@ const SearchBar: React.FC = () => {
     dispatch(setSearchInfo({ search: search.current, category: category.current, filter: filter.current, startIndex: 0 }));
   }, [dispatch, search, category, filter]);
 
-  const onCategoryChangedCallback = useCallback((evt: any) => {
+  const onCategoryChangedCallback = useCallback((value: string) => {
+    category.current = value;
+  }, [category]);
 
-  }, [category])
+  const onFilterChangedCallback = useCallback((value: string) => {
+    filter.current = value;
+  }, [filter]);
 
   return (
     <header className="searchbar">
@@ -30,7 +34,7 @@ const SearchBar: React.FC = () => {
       <div className="searchbar-row2">
         <div className="searchbar-row2-col">
           <div className="searchbar-row2-col-title sawarabi-gothic-bold">Категория</div>
-          <InputSelect>
+          <InputSelect onSelectionChanged={onCategoryChangedCallback}>
             <option>all</option>
             <option>art</option>
             <option>biography</option>
@@ -42,9 +46,9 @@ const SearchBar: React.FC = () => {
         </div>
         <div className="searchbar-row2-col">
           <div className="searchbar-row2-col-title sawarabi-gothic-bold">Сортировка по</div>
-          <InputSelect>
-            <option>Релевантность</option>
-            <option>Новое</option>
+          <InputSelect onSelectionChanged={onFilterChangedCallback}>
+            <option>relevance</option>
+            <option>newest</option>
           </InputSelect>
         </div>
       </div>

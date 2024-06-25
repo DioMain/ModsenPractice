@@ -6,8 +6,10 @@ import LoadState from "../enums/loadState";
 import { AxiosError } from "axios";
 import GoogleBooksApiOptions from "../types/googleBooksApiOptions";
 
+const defaultValue = { totalItems: 0, items: [] };
+
 function useBooks(options: GoogleBooksApiOptions) {
-    const [data, setData] = useState<BookSearchResult>({ totalItems: 0, items: [] });
+    const [data, setData] = useState<BookSearchResult>(defaultValue);
     const [state, setState] = useState<LoadState>(LoadState.Loading);
     const [error, setError] = useState<AxiosError>();
 
@@ -15,19 +17,23 @@ function useBooks(options: GoogleBooksApiOptions) {
         setState(LoadState.Loading);
 
         if (options.search === "") {
-            setData({ totalItems: 0, items: []});
+            setData(defaultValue);
             setState(LoadState.Success);
         }
         else {
             GoogleBooksApiQueries.GetBooks(options).then(Data => {
-                setData(Data);
+                if (Data.totalItems == 0)
+                    setData(defaultValue);
+                else 
+                    setData(Data);
+
                 setState(LoadState.Success);
             }).catch(error => {
                 setError(error);
                 setState(LoadState.Failed);
             });
         }
-    }, [options.search, options.startIndex]);
+    }, [options.search, options.category, options.orderBy, options.startIndex]);
 
     return { data, state, error };
 }

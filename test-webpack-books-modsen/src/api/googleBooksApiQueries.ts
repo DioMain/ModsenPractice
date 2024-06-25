@@ -5,13 +5,13 @@ import GoogleBooksApiOptions from "../types/googleBooksApiOptions";
 
 class GoogleBooksApiQueries {
     public static async GetBooks(options: GoogleBooksApiOptions): Promise<BookSearchResult> {
-        console.log(options);
         let responce = await axios.get(global.googleApiUrl as string, {
             params: {
-                q: options.search,
+                q: options.category === 'all' ? options.search : `${options.search}+subject:${options.category}`,
                 startIndex: options.startIndex,
                 maxResults: options.maxResults,
-                key: global.googleApiKey
+                orderBy: options.orderBy,
+                key: global.googleApiKey,
             }
         });
 

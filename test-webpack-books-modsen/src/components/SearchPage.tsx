@@ -6,7 +6,6 @@ import '../styles/searchPage.scss';
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { addToStartIndex } from "../redux/slicers/searchInfoSlice";
 import BookSearchResult from "../types/bookSearchResult";
-import Book from "../types/book";
 
 const SearchPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -15,19 +14,27 @@ const SearchPage: React.FC = () => {
   const books = useRef<BookSearchResult>({ totalItems: 0, items: [] });
   const booksBuffer = useRef<any>({ items: [], searchInfo: searchInfo });
 
-  const loadedBooks = useBooks({ search: searchInfo.search, maxResults: 30, startIndex: searchInfo.startIndex });
+  const loadedBooks = useBooks({ 
+    search: searchInfo.search, 
+    maxResults: 30, 
+    startIndex: searchInfo.startIndex, 
+    orderBy: searchInfo.filter,
+    category: searchInfo.category
+  });
 
   const onClickLoadmoreCallback = () => {
     dispatch(addToStartIndex({ count: 30 }));
   };
 
+  console.log(loadedBooks.state);
+
   if (loadedBooks.state == LoadState.Success) {
-    books.current = { totalItems: loadedBooks.data.totalItems, items: [...booksBuffer.current.items, ...loadedBooks.data.items] }
+    books.current = { totalItems: loadedBooks.data.totalItems, items: [...booksBuffer.current.items, ...loadedBooks.data.items] };
   }
   else if (loadedBooks.state == LoadState.Loading) {
     if (booksBuffer.current.searchInfo.search !== searchInfo.search ||
-        booksBuffer.current.searchInfo.filter !== searchInfo.filter ||
-        booksBuffer.current.searchInfo.category !== searchInfo.category
+      booksBuffer.current.searchInfo.filter !== searchInfo.filter ||
+      booksBuffer.current.searchInfo.category !== searchInfo.category
     ) {
       booksBuffer.current = { items: [], searchInfo: searchInfo };
     }
@@ -38,12 +45,12 @@ const SearchPage: React.FC = () => {
 
   return (
     <div className="searchpage">
+      <h1 className="sawarabi-gothic-regular searchpage-itemcount">
+        {books.current.totalItems > 0 ? (<>Найдено {books.current.totalItems}</>) : (<>Ничего не найдено</>)}
+      </h1>
       {
         books.current.items.length > 0 && (
           <>
-            <h1 className="sawarabi-gothic-regular searchpage-itemcount">
-              {books.current.totalItems > 0 ? (<>Найдено {books.current.totalItems}</>) : (<>Ничего не найдено</>)}
-            </h1>
             {loadedBooks.state == LoadState.Loading && (<h1 className="searchpage-info">Загрузка...</h1>)}
             <div className="searchpage-content">
               {
@@ -62,7 +69,7 @@ const SearchPage: React.FC = () => {
       {
         loadedBooks.state == LoadState.Success && loadedBooks.data.items.length != 0 && (
           <div className="searchpage-loadmore">
-            <input type="button" value="Ещё 30" onClick={onClickLoadmoreCallback}/>
+            <input type="button" value="Ещё 30" onClick={onClickLoadmoreCallback} />
           </div>
         )
       }
