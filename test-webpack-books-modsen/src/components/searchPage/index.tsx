@@ -94,7 +94,7 @@ const SearchPage: React.FC = () => {
       )}
 
       {loadedBooks.state == LoadState.Success &&
-        loadedBooks.data.items.length != 0 && (
+        loadedBooks.data.items.length == 30 &&  (
           <div className="searchpage-loadmore">
             <input
               type="button"
