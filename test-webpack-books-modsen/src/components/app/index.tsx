@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import SearchBar from './searchBar';
-import { useAppSelector } from '../redux/hooks';
-import CartPage from './cartPage';
-import SearchPage from './searchPage';
-import GoogleBooksApiOptions from '../types/googleBooksApiOptions';
+import SearchBar from './../searchBar';
+import { useAppSelector } from '../../redux/hooks';
+import CartPage from './../cartPage';
+import SearchPage from './../searchPage';
 
 function App() {
   const currnetBook = useAppSelector(state => state.book.value);

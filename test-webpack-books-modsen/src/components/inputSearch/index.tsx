@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 
-import './../styles/inputSearch.scss';
-import PropsBase from "../types/propsBase";
+import './../../styles/inputSearch.scss';
+import PropsBase from "../../types/propsBase";
 
 interface InputSearchProps extends PropsBase {
   onTextChanged: (text: string) => void;

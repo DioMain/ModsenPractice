@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
-import Book from "../types/book";
+import Book from "../../types/book";
 
-import '../styles/bookElement.scss';
-import PropsBase from "../types/propsBase";
+import '../../styles/bookElement.scss';
+import PropsBase from "../../types/propsBase";
 
 interface BookElementProps extends PropsBase {
   book: Book;

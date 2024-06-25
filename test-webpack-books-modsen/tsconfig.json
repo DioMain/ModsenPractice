@@ -10,11 +10,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./src",
-    "paths": {
-      "*": ["*", "./components/*"]
-    },
+    "outDir": "./dist"
   },
   "include": ["src"]
 }

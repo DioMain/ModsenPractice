@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
-import PropsBase from "../types/propsBase";
+import PropsBase from "../../types/propsBase";
 
-import "./../styles/inputSelect.scss";
+import "./../../styles/inputSelect.scss";
 
 interface InputSelectProps extends PropsBase {
   onSelectionChanged?: (value: string) => void;

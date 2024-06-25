@@ -1,11 +1,11 @@
 import React, { useCallback, useRef } from "react";
-import InputSearch from "./inputSearch";
+import InputSearch from "./../inputSearch";
 
-import "../styles/searchBar.scss";
-import InputSelect from "./inputSelect";
-import { useAppDispatch } from "../redux/hooks";
-import { setSearchInfo } from "../redux/slicers/searchInfoSlice";
-import { setBook } from "../redux/slicers/bookSlice";
+import "../../styles/searchBar.scss";
+import InputSelect from "./../inputSelect";
+import { useAppDispatch } from "../../redux/hooks";
+import { setSearchInfo } from "../../redux/slicers/searchInfoSlice";
+import { setBook } from "../../redux/slicers/bookSlice";
 
 const SearchBar: React.FC = () => {
   const search = useRef("");

@@ -1,13 +1,13 @@
 import React, { useCallback, useRef, useState } from "react";
-import useBooks from "../hooks/useBooks";
-import LoadState from "../enums/loadState";
-import BookElement from "./bookElement";
-import "../styles/searchPage.scss";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { addToStartIndex } from "../redux/slicers/searchInfoSlice";
-import BookSearchResult from "../types/bookSearchResult";
-import Book from "../types/book";
-import { setBook } from "../redux/slicers/bookSlice";
+import useBooks from "../../hooks/useBooks";
+import LoadState from "../../enums/loadState";
+import BookElement from "./../bookElement";
+import "../../styles/searchPage.scss";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { addToStartIndex } from "../../redux/slicers/searchInfoSlice";
+import BookSearchResult from "../../types/bookSearchResult";
+import Book from "../../types/book";
+import { setBook } from "../../redux/slicers/bookSlice";
 
 const SearchPage: React.FC = () => {
   const dispatch = useAppDispatch();
