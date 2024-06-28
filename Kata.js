@@ -1,36 +1,29 @@
-var bowlingScore = function (rolls = []) {
-    let scores = 0;
-    let frame = 1;
-    let sum = 0;
-    let roll = 0;
+function sumIntervals(intervals) {
+    if (!intervals || intervals.length === 0) return 0;
 
-    const newFrame = () => {
-        frame++;
-        sum = 0;
-        roll = 0;
-    };
+    intervals.sort((a, b) => a[0] - b[0]);
 
-    rolls.forEach((val, i) => {
-        scores += val;
-        sum += val;
-        roll++;
+    console.log(intervals)
 
-        if (frame < 10) {
-            if (roll == 2) {
-                if (sum == 10)
-                    scores += rolls[i + 1];
+    let totalLength = 0;
+    let currentStart = intervals[0][0];
+    let currentEnd = intervals[0][1];
 
-                newFrame();
-            }
-            else if (roll == 1 && sum == 10) {
-                scores += rolls[i + 1] + rolls[i + 2];
+    for (let i = 1; i < intervals.length; i++) {
+        let [start, end] = intervals[i];
 
-                newFrame();
-            }
+        if (start <= currentEnd) {
+            currentEnd = Math.max(currentEnd, end);
+        } else {
+            totalLength += currentEnd - currentStart;
+            currentStart = start;
+            currentEnd = end;
         }
-    });
+    }
 
-    return scores;
+    totalLength += currentEnd - currentStart;
+
+    return totalLength;
 }
 
-console.log(bowlingScore([9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9]));
+console.log(sumIntervals([[1, 4], [7, 10], [3, 5]]));

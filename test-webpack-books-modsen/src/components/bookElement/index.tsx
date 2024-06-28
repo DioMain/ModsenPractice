@@ -1,35 +1,28 @@
 import React, { useCallback } from "react";
-import Book from "../../types/book";
-
-import '../../styles/bookElement.scss';
-import PropsBase from "../../types/propsBase";
-
-interface BookElementProps extends PropsBase {
-  book: Book;
-  onClick?: (book: Book) => void;
-}
+import './bookElement.scss';
+import BookElementProps from "./bookElementProps";
 
 const BookElement: React.FC<BookElementProps> = ({ book, onClick, style, className }) => {
+  const volume = book.volumeInfo;
 
-  const onClickCallback = useCallback(() => {
-
-    if (onClick != undefined)
+  const onElementClick = useCallback(() => {
+    if (onClick)
       onClick(book);
       
-  }, [onClick, book])
+  }, [onClick, book]);
 
   return (
-    <div className={`bookelement ${className}`} style={style} onClick={onClickCallback}>
+    <div className={`bookelement ${className}`} style={style} onClick={onElementClick}>
       <div className="bookelement-img">
         {
-          book.volumeInfo.imageLinks != undefined ?
-            <img src={book.volumeInfo.imageLinks.thumbnail} /> :
+          volume.imageLinks != undefined ?
+            <img src={volume.imageLinks.thumbnail} /> :
             <img src="/book-placeholder.png" />
         }
       </div>
-      <div className="bookelement-category">{book.volumeInfo.categories != undefined ? book.volumeInfo.categories[0] : "Без категории" }</div>
-      <div className="bookelement-title">{book.volumeInfo.title}</div>
-      <div className="bookelement-author">{book.volumeInfo.authors != undefined ? book.volumeInfo.authors[0] : "Автор не указан" }</div>
+      <div className="bookelement-category">{volume.categories ? volume.categories[0] : "Без категории" }</div>
+      <div className="bookelement-title">{volume.title}</div>
+      <div className="bookelement-author">{volume.authors ? volume.authors[0] : "Автор не указан" }</div>
     </div>
   );
 }

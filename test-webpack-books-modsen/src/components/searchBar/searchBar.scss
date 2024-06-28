@@ -6,7 +6,7 @@ $input-height: 32px;
   padding: 16px;
 
   background-size: cover;
-  background-image: url("../assets/searchBarBG.jpeg");
+  background-image: url("../../assets/img/searchBarBG.jpeg");
 
   display: flex;
 
@@ -43,7 +43,7 @@ $input-height: 32px;
         height: $input-height;
         width: 196px;
       }
-  
+
       &-title {
         color: white;
       }

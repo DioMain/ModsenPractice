@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import BookSearchResult from "../types/bookSearchResult";
 import GoogleBooksApiQueries from "../api/googleBooksApiQueries";
-import LoadState from "../enums/loadState";
+import LoadState from "../types/loadState";
 import { AxiosError } from "axios";
 import GoogleBooksApiOptions from "../types/googleBooksApiOptions";
 

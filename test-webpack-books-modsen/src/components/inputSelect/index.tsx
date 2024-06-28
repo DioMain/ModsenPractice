@@ -1,26 +1,19 @@
-import React, { useCallback, useState } from "react";
-import PropsBase from "../../types/propsBase";
-
-import "./../../styles/inputSelect.scss";
-
-interface InputSelectProps extends PropsBase {
-  onSelectionChanged?: (value: string) => void;
-}
+import React, { useCallback } from "react";
+import InputSelectProps from "./inputSelectProps";
+import "./inputSelect.scss";
 
 const InputSelect: React.FC<InputSelectProps> = ({ className, style, children, onSelectionChanged }) => {
-  const selectionChangedCallback = useCallback(
-    (evt: React.ChangeEvent<HTMLSelectElement>) => {
-      if (onSelectionChanged != undefined)
-        onSelectionChanged(evt.currentTarget.value);
-    },
-    [onSelectionChanged]
-  );
-
+  
+  const selectionChanged = (evt: React.ChangeEvent<HTMLSelectElement>) => {
+    if (onSelectionChanged)
+      onSelectionChanged(evt.currentTarget.value);
+  };
+  
   return (
     <select
       className={`inputselect sawarabi-gothic-regular ${className}`}
       style={style}
-      onChange={selectionChangedCallback}
+      onChange={selectionChanged}
     >
       {children}
     </select>

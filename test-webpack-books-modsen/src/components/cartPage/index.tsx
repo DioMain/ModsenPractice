@@ -1,33 +1,32 @@
 import React from "react";
 import Book from "../../types/book";
-
-import "../../styles/cartPage.scss";
+import "./cartPage.scss";
 
 const CartPage: React.FC<{ book: Book }> = ({ book }) => {
+  let volume = book.volumeInfo;
+
   return (
     <div className="cartpage">
       <div className="cartpage-img">
         {
-          book.volumeInfo.imageLinks.large != undefined ?
-          <img src={book.volumeInfo.imageLinks.large} /> :
-          <img src={book.volumeInfo.imageLinks.thumbnail} />
+          volume.imageLinks.large ?
+          <img src={volume.imageLinks.large} /> :
+          <img src={volume.imageLinks.thumbnail} />
         }
       </div>
       <div className="cartpage-content">
         <div className="cartpage-content-category">
-          {book.volumeInfo.categories != undefined &&
-            book.volumeInfo.categories.map((item, index) => {
-              if (index == book.volumeInfo.categories.length - 1)
-                return <span id="index">{item}</span>;
-              else return <span id="index">{item} / </span>;
+          {volume.categories &&
+            volume.categories.map((item, index) => {
+              return <span key={index}>{item} {volume.categories.length - 1 && (<> / </>)}</span>
             })}
         </div>
-        <div className="cartpage-content-title">{book.volumeInfo.title}</div>
+        <div className="cartpage-content-title">{volume.title}</div>
         <div className="cartpage-content-author">
-          {book.volumeInfo.authors != undefined && book.volumeInfo.authors[0]}
+          {volume.authors != undefined && volume.authors[0]}
         </div>
         <div className="cartpage-content-description">
-          <p>{book.volumeInfo.description}</p>
+          <p>{volume.description}</p>
         </div>
       </div>
     </div>

@@ -1,13 +1,13 @@
 import React, { useCallback, useRef, useState } from "react";
 import useBooks from "../../hooks/useBooks";
-import LoadState from "../../enums/loadState";
+import LoadState from "../../types/loadState";
 import BookElement from "./../bookElement";
-import "../../styles/searchPage.scss";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { addToStartIndex } from "../../redux/slicers/searchInfoSlice";
+import "./searchPage.scss";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { addToStartIndex } from "../../redux/slices/searchInfoSlice";
 import BookSearchResult from "../../types/bookSearchResult";
 import Book from "../../types/book";
-import { setBook } from "../../redux/slicers/bookSlice";
+import { setBook } from "../../redux/slices/bookSlice";
 
 const SearchPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -24,11 +24,11 @@ const SearchPage: React.FC = () => {
     category: searchInfo.category,
   });
 
-  const onClickLoadmoreCallback = useCallback(() => {
+  const onClickLoadmore = useCallback(() => {
     dispatch(addToStartIndex({ count: 30 }));
   }, [dispatch, addToStartIndex]);
 
-  const onElementClickCallback = useCallback(
+  const onElementClick = useCallback(
     (book: Book) => {
       dispatch(setBook(book));
     },
@@ -72,11 +72,7 @@ const SearchPage: React.FC = () => {
           <div className="searchpage-content">
             {books.current.items.map((item, i) => {
               return (
-                <BookElement
-                  key={i}
-                  book={item}
-                  onClick={onElementClickCallback}
-                />
+                <BookElement key={i} book={item} onClick={onElementClick} />
               );
             })}
           </div>
@@ -86,7 +82,7 @@ const SearchPage: React.FC = () => {
       {loadedBooks.state == LoadState.Loading && (
         <h1 className="searchpage-info">Загрузка...</h1>
       )}
-      
+
       {loadedBooks.state == LoadState.Failed && (
         <h1 className="searchpage-info">
           ОШИБКА: {loadedBooks.error?.message}
@@ -94,13 +90,9 @@ const SearchPage: React.FC = () => {
       )}
 
       {loadedBooks.state == LoadState.Success &&
-        loadedBooks.data.items.length == 30 &&  (
+        loadedBooks.data.items.length == 30 && (
           <div className="searchpage-loadmore">
-            <input
-              type="button"
-              value="Ещё 30"
-              onClick={onClickLoadmoreCallback}
-            />
+            <input type="button" value="Ещё 30" onClick={onClickLoadmore} />
           </div>
         )}
     </div>

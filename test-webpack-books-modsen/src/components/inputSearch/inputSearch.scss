@@ -1,0 +1,34 @@
+.inputsearch {
+  border: 2px solid gainsboro;
+
+  justify-content: space-between;
+  flex-direction: row;
+  display: flex;
+
+  &-input-text {
+    width: 100%;
+    border: none;
+    outline: 2px solid gainsboro;
+    padding: 6px;
+  }
+  &-input-text:hover {
+    border: none;
+  }
+  &-input-text:focus {
+    border: none;
+    outline: 2px solid black;
+  }
+
+  &-input-submit {
+    margin-left: 2px;
+    border: none;
+  }
+  &-input-submit:hover {
+    cursor: pointer;
+    background-color: rgb(222, 222, 222);
+    border: none;
+  }
+  &-input-submit:focus {
+    border: none;
+  }
+}

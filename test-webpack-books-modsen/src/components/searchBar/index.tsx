@@ -1,20 +1,30 @@
 import React, { useCallback, useRef } from "react";
 import InputSearch from "./../inputSearch";
 
-import "../../styles/searchBar.scss";
+import "./searchBar.scss";
 import InputSelect from "./../inputSelect";
-import { useAppDispatch } from "../../redux/hooks";
-import { setSearchInfo } from "../../redux/slicers/searchInfoSlice";
-import { setBook } from "../../redux/slicers/bookSlice";
+import { useAppDispatch } from "../../hooks/reduxHooks";
+import { setSearchInfo } from "../../redux/slices/searchInfoSlice";
+import { setBook } from "../../redux/slices/bookSlice";
 
 const SearchBar: React.FC = () => {
+  const categories = [
+    "all",
+    "art",
+    "biography",
+    "computers",
+    "history",
+    "medical",
+    "poetry",
+  ];
+
   const search = useRef("");
   const category = useRef("all");
   const filter = useRef("relevance");
 
   const dispatch = useAppDispatch();
 
-  const onSubmitCallback = useCallback(() => {
+  const onSearchSubmit = useCallback(() => {
     dispatch(setBook(undefined));
     dispatch(
       setSearchInfo({
@@ -26,14 +36,14 @@ const SearchBar: React.FC = () => {
     );
   }, [dispatch, search, category, filter]);
 
-  const onCategoryChangedCallback = useCallback(
+  const onCategoryChanged = useCallback(
     (value: string) => {
       category.current = value;
     },
     [category]
   );
 
-  const onFilterChangedCallback = useCallback(
+  const onFilterChanged = useCallback(
     (value: string) => {
       filter.current = value;
     },
@@ -45,7 +55,7 @@ const SearchBar: React.FC = () => {
       <h1 className="searchbar-title sawarabi-gothic-bold">Поиск книг</h1>
       <div className="searchbar-row1">
         <InputSearch
-          onSearchSubmit={onSubmitCallback}
+          onSearchSubmit={onSearchSubmit}
           onTextChanged={(text) => {
             search.current = text;
           }}
@@ -56,21 +66,17 @@ const SearchBar: React.FC = () => {
           <div className="searchbar-row2-col-title sawarabi-gothic-bold">
             Категория
           </div>
-          <InputSelect onSelectionChanged={onCategoryChangedCallback}>
-            <option>all</option>
-            <option>art</option>
-            <option>biography</option>
-            <option>computers</option>
-            <option>history</option>
-            <option>medical</option>
-            <option>poetry</option>
+          <InputSelect onSelectionChanged={onCategoryChanged}>
+            {categories.map((item, index) => {
+              return <option key={index}>{item}</option>;
+            })}
           </InputSelect>
         </div>
         <div className="searchbar-row2-col">
           <div className="searchbar-row2-col-title sawarabi-gothic-bold">
             Сортировка по
           </div>
-          <InputSelect onSelectionChanged={onFilterChangedCallback}>
+          <InputSelect onSelectionChanged={onFilterChanged}>
             <option>relevance</option>
             <option>newest</option>
           </InputSelect>
