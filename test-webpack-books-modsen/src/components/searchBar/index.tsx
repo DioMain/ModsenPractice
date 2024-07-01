@@ -8,15 +8,7 @@ import { setSearchInfo } from "../../redux/slices/searchInfoSlice";
 import { setBook } from "../../redux/slices/bookSlice";
 
 const SearchBar: React.FC = () => {
-  const categories = [
-    "all",
-    "art",
-    "biography",
-    "computers",
-    "history",
-    "medical",
-    "poetry",
-  ];
+  const categories = ["all", "art", "biography", "computers", "history", "medical", "poetry"];
 
   const search = useRef("");
   const category = useRef("all");
@@ -63,9 +55,7 @@ const SearchBar: React.FC = () => {
       </div>
       <div className="searchbar-row2">
         <div className="searchbar-row2-col">
-          <div className="searchbar-row2-col-title sawarabi-gothic-bold">
-            Категория
-          </div>
+          <div className="searchbar-row2-col-title sawarabi-gothic-bold">Категория</div>
           <InputSelect onSelectionChanged={onCategoryChanged}>
             {categories.map((item, index) => {
               return <option key={index}>{item}</option>;
@@ -73,9 +63,7 @@ const SearchBar: React.FC = () => {
           </InputSelect>
         </div>
         <div className="searchbar-row2-col">
-          <div className="searchbar-row2-col-title sawarabi-gothic-bold">
-            Сортировка по
-          </div>
+          <div className="searchbar-row2-col-title sawarabi-gothic-bold">Сортировка по</div>
           <InputSelect onSelectionChanged={onFilterChanged}>
             <option>relevance</option>
             <option>newest</option>
