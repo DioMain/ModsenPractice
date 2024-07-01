@@ -1,29 +1,14 @@
-function sumIntervals(intervals) {
-    if (!intervals || intervals.length === 0) return 0;
+function rgb(r = 0, g = 0, b = 0) {
+    r = r < 0 ? 0 : r; r = r > 255 ? 255 : r;
+    g = g < 0 ? 0 : g; g = g > 255 ? 255 : g;
+    b = b < 0 ? 0 : b; b = b > 255 ? 255 : b;
 
-    intervals.sort((a, b) => a[0] - b[0]);
-
-    console.log(intervals)
-
-    let totalLength = 0;
-    let currentStart = intervals[0][0];
-    let currentEnd = intervals[0][1];
-
-    for (let i = 1; i < intervals.length; i++) {
-        let [start, end] = intervals[i];
-
-        if (start <= currentEnd) {
-            currentEnd = Math.max(currentEnd, end);
-        } else {
-            totalLength += currentEnd - currentStart;
-            currentStart = start;
-            currentEnd = end;
-        }
-    }
-
-    totalLength += currentEnd - currentStart;
-
-    return totalLength;
+    let sr = r.toString(16).length == 1 ? `0${r.toString(16)}` : r.toString(16);
+    let sg = g.toString(16).length == 1 ? `0${g.toString(16)}` : g.toString(16);
+    let sb = b.toString(16).length == 1 ? `0${b.toString(16)}` : b.toString(16);
+  
+    return `${sr.toUpperCase()}${sg.toUpperCase()}${sb.toUpperCase()}`;
 }
 
-console.log(sumIntervals([[1, 4], [7, 10], [3, 5]]));
+console.log(rgb(173, 255,  47));
+console.log(rgb(0, 0,  -20));
