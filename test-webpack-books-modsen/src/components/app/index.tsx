@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
-import SearchBar from './../searchBar';
-import { useAppSelector } from '../../hooks/reduxHooks';
-import CartPage from './../cartPage';
-import SearchPage from './../searchPage';
+import React, { useState } from "react";
+import SearchBar from "./../searchBar";
+import { useAppSelector } from "../../hooks/reduxHooks";
+import CartPage from "./../cartPage";
+import SearchPage from "./../searchPage";
 
 function App() {
-  const currentBook = useAppSelector(state => state.book.value);
+  const currentBook = useAppSelector((state) => state.book.value);
 
   return (
     <>
-      <SearchBar/>
+      <SearchBar />
 
-      {
-        currentBook ? <CartPage book={currentBook}/> : <SearchPage/>
-      }
+      {currentBook ? <CartPage book={currentBook} /> : <SearchPage />}
     </>
-  )
+  );
 }
 
 export default App;
