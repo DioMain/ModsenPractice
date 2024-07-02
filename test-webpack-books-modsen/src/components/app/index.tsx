@@ -8,6 +8,8 @@ import UserPanel from "../userPanel";
 import useAuth from "../../hooks/useAuth";
 import AuthState from "../../types/authState";
 import { setUser } from "../../redux/slices/userSlice";
+import PageState from "../../types/pageState";
+import FavoritePage from "../favoritePage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -34,10 +36,15 @@ function App() {
     <>
       <header>
         <UserPanel pg={pageState} />
-        <SearchBar />
+
+        {pageState === PageState.Search && <SearchBar />}
       </header>
 
-      {currentBook ? <CartPage book={currentBook} /> : <SearchPage />}
+      {currentBook ? (
+        <CartPage book={currentBook} />
+      ) : (
+        <>{pageState === PageState.Search ? <SearchPage /> : <FavoritePage />}</>
+      )}
     </>
   );
 }
