@@ -1,0 +1,38 @@
+@import "./../../styles/fonts";
+
+.userpanel {
+  @include sawarabi-gothic-regular;
+
+  color: white;
+
+  &-auth {
+    display: flex;
+    justify-content: space-between;
+
+    &-content {
+      display: flex;
+
+      img {
+      }
+
+      &-logoutbtn {
+      }
+      &-logoutbtn:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &-noauth {
+    display: flex;
+    justify-content: end;
+
+    &-loginbtn {
+    }
+    &-loginbtn:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}

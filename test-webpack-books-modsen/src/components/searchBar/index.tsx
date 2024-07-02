@@ -43,7 +43,7 @@ const SearchBar: React.FC = () => {
   );
 
   return (
-    <header className="searchbar">
+    <div className="searchbar">
       <h1 className="searchbar-title sawarabi-gothic-bold">Поиск книг</h1>
       <div className="searchbar-row1">
         <InputSearch
@@ -70,7 +70,7 @@ const SearchBar: React.FC = () => {
           </InputSelect>
         </div>
       </div>
-    </header>
+    </div>
   );
 };
 

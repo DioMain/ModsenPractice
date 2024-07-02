@@ -1,6 +1,7 @@
 interface User {
-  id: string;
-  name: string;
+  id?: string | null;
+  name?: string | null;
+  photoUrl?: string | null;
 }
 
 export default User;

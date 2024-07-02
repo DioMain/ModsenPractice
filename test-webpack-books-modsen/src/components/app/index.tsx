@@ -1,15 +1,37 @@
 import React, { useState } from "react";
 import SearchBar from "./../searchBar";
-import { useAppSelector } from "../../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import CartPage from "./../cartPage";
 import SearchPage from "./../searchPage";
+import "./app.scss";
+import UserPanel from "../userPanel";
+import useAuth from "../../hooks/useAuth";
+import AuthState from "../../types/authState";
+import { setUser } from "../../redux/slices/userSlice";
 
 function App() {
+  const dispatch = useAppDispatch();
+
   const currentBook = useAppSelector((state) => state.book.value);
+
+  const auth = useAuth();
+
+  if (auth.state == AuthState.NotAuthed) dispatch(setUser(undefined));
+  else if (auth.state == AuthState.Authed)
+    dispatch(
+      setUser({
+        name: auth.data?.displayName,
+        id: auth.data?.email,
+        photoUrl: auth.data?.photoURL,
+      })
+    );
 
   return (
     <>
-      <SearchBar />
+      <header>
+        <UserPanel />
+        <SearchBar />
+      </header>
 
       {currentBook ? <CartPage book={currentBook} /> : <SearchPage />}
     </>
