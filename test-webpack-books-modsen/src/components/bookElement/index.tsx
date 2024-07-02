@@ -12,7 +12,7 @@ const BookElement: React.FC<BookElementProps> = ({ book, onClick, style, classNa
   return (
     <div className={`bookelement ${className}`} style={style} onClick={onElementClick}>
       <div className="bookelement-img">
-        {volume.imageLinks != undefined ? <img src={volume.imageLinks.thumbnail} /> : <img src="/book-placeholder.png" />}
+        {volume.imageLinks ? <img src={volume.imageLinks.thumbnail} /> : <img src="/book-placeholder.png" />}
       </div>
       <div className="bookelement-category">{volume.categories ? volume.categories[0] : "Без категории"}</div>
       <div className="bookelement-title">{volume.title}</div>
