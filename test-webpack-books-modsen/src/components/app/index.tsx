@@ -13,11 +13,14 @@ function App() {
   const dispatch = useAppDispatch();
 
   const currentBook = useAppSelector((state) => state.book.value);
+  const pageState = useAppSelector((state) => state.pageState.value);
 
   const auth = useAuth();
 
+  console.log("asds");
+
   if (auth.state == AuthState.NotAuthed) dispatch(setUser(undefined));
-  else if (auth.state == AuthState.Authed)
+  else if (auth.state == AuthState.Authed) {
     dispatch(
       setUser({
         name: auth.data?.displayName,
@@ -25,11 +28,12 @@ function App() {
         photoUrl: auth.data?.photoURL,
       })
     );
+  }
 
   return (
     <>
       <header>
-        <UserPanel />
+        <UserPanel pg={pageState} />
         <SearchBar />
       </header>
 

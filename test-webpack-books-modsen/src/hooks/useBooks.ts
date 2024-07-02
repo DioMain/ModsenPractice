@@ -16,6 +16,8 @@ function useBooks(options: GoogleBooksApiOptions) {
   useEffect(() => {
     setState(LoadState.Loading);
 
+    console.log("aaa");
+
     if (options.search === "") {
       setData(defaultValue);
       setState(LoadState.Success);

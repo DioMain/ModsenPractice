@@ -1,0 +1,70 @@
+.iconbutton {
+  background-color: rgb(255, 255, 255);
+
+  border: 4px solid orange;
+  border-radius: 100%;
+
+  box-shadow: 0px 0px 4px white;
+  animation: 0.2s button-normal;
+
+  img {
+    width: 60%;
+    height: 60%;
+    margin-left: 20%;
+    margin-top: 20%;
+
+    animation: 0.2s image-normal;
+  }
+
+  &:hover {
+    box-shadow: 0px 0px 8px white;
+    border-color: rgb(177, 115, 0);
+
+    cursor: pointer;
+    animation: 0.2s button-hover;
+
+    img {
+      margin-top: 15%;
+
+      animation: 0.2s image-hover;
+    }
+  }
+}
+
+@keyframes button-hover {
+  0% {
+    box-shadow: 0px 0px 4px white;
+    border-color: orange;
+  }
+  100% {
+    box-shadow: 0px 0px 8px white;
+    border-color: rgb(177, 115, 0);
+  }
+}
+@keyframes button-normal {
+  0% {
+    box-shadow: 0px 0px 8px white;
+    border-color: rgb(177, 115, 0);
+  }
+  100% {
+    box-shadow: 0px 0px 4px white;
+    border-color: orange;
+  }
+}
+
+@keyframes image-hover {
+  0% {
+    margin-top: 20%;
+  }
+  100% {
+    margin-top: 15%;
+  }
+}
+@keyframes image-normal {
+  0% {
+    margin-top: 15%;
+  }
+  100% {
+    margin-top: 20%;
+  }
+}

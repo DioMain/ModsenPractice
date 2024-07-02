@@ -1,0 +1,21 @@
+@import "./../../styles/fonts";
+
+.favoritepage {
+  @include sawarabi-gothic-regular;
+  margin-bottom: 32px;
+
+  &-content {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 32px;
+  }
+
+  &-info,
+  &-itemcount {
+    text-align: center;
+  }
+}

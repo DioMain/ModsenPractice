@@ -3,7 +3,8 @@ $input-height: 32px;
 .searchbar {
   height: max-content;
 
-  padding: 16px;
+  padding: 8px;
+  padding-top: 0px;
 
   display: flex;
 
@@ -11,6 +12,7 @@ $input-height: 32px;
 
   &-title {
     margin: 4px;
+    margin-top: 0;
 
     font-size: 64px;
     color: white;

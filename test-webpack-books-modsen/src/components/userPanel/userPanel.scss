@@ -4,22 +4,64 @@
   @include sawarabi-gothic-regular;
 
   color: white;
+  background-color: rgba(0, 0, 0, 0.25);
+
+  padding: 16px;
+  padding-bottom: 4px;
 
   &-auth {
     display: flex;
     justify-content: space-between;
 
-    &-content {
+    &-statebtn {
+      @media screen and (min-width: 375px) {
+        margin-top: 8px;
+        width: 48px;
+        height: 48px;
+      }
+      @media screen and (max-width: 376px) {
+        margin-top: 16px;
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    &-user {
       display: flex;
 
-      img {
+      &-name {
+        font-size: 24px;
+        font-weight: 600;
+
+        @media screen and (min-width: 375px) {
+          margin-top: 14px;
+          font-size: 24px;
+        }
+        @media screen and (max-width: 376px) {
+          font-size: 16px;
+          margin-top: 24px;
+        }
       }
 
-      &-logoutbtn {
-      }
-      &-logoutbtn:hover {
-        cursor: pointer;
-        text-decoration: underline;
+      &-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        margin-left: 16px;
+
+        img {
+          width: 64px;
+          border-radius: 32px;
+        }
+
+        &-logoutbtn {
+          text-align: center;
+        }
+        &-logoutbtn:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -28,8 +70,6 @@
     display: flex;
     justify-content: end;
 
-    &-loginbtn {
-    }
     &-loginbtn:hover {
       cursor: pointer;
       text-decoration: underline;
