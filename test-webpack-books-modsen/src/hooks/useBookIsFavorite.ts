@@ -1,16 +1,13 @@
-import { AxiosError } from "axios";
-import BookSearchResult from "../types/bookSearchResult";
 import LoadState from "../types/loadState";
 import { useEffect, useState } from "react";
 import User from "../types/user";
 import { useAppSelector } from "./reduxHooks";
+import Book from "../types/book";
 
-const defaultValue = { totalItems: 0, items: [] };
-
-function useFavoriteBooks(user: User) {
-  const [data, setData] = useState<BookSearchResult>(defaultValue);
+function useBookIsFavorite(user: User, book: Book) {
+  const [data, setData] = useState<boolean>(false);
   const [state, setState] = useState<LoadState>(LoadState.Loading);
-  const [error, setError] = useState<AxiosError>();
+  const [error, setError] = useState<string>("");
 
   const pageState = useAppSelector((state) => state.pageState.value);
 
@@ -21,4 +18,4 @@ function useFavoriteBooks(user: User) {
   return { data, state, error };
 }
 
-export default useFavoriteBooks;
+export default useBookIsFavorite;
