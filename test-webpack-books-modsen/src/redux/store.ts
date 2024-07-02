@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import bookReducer  from "./slices/bookSlice";
 import searchInfoReducer from "./slices/searchInfoSlice";
+import userReducer from "./slices/userSlice";
 
 export const store = configureStore({
     reducer: {
         book: bookReducer,
-        searchInfo: searchInfoReducer
+        searchInfo: searchInfoReducer,
+        user: userReducer
     }
 });
 

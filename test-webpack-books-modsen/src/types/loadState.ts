@@ -1,5 +1,7 @@
 enum LoadState {
-    Loading, Success, Failed
+  Loading,
+  Success,
+  Failed,
 }
 
 export default LoadState;
