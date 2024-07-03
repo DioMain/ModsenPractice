@@ -1,11 +1,14 @@
 import React, { useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import "./userPanel.scss";
 import { getAuth, signInWithPopup, signOut } from "firebase/auth";
 import { firebaseData } from "../../firebase";
 import IconButton from "../iconButton";
 import PageState from "../../types/pageState";
 import { setPageState } from "../../redux/slices/pageStateSlice";
+
+import HearthImg from "./../../assets/img/heart.png";
+import SearchImg from "./../../assets/img/search.png";
+import "./userPanel.scss";
 
 const UserPanel: React.FC<{ pg: any }> = ({ pg }) => {
   const user = useAppSelector((state) => state.user.value);
@@ -44,9 +47,9 @@ const UserPanel: React.FC<{ pg: any }> = ({ pg }) => {
       {user ? (
         <div className="userpanel-auth">
           {pg === PageState.Search ? (
-            <IconButton className="userpanel-auth-statebtn" image="/heart.png" onClick={clickFavorite} />
+            <IconButton className="userpanel-auth-statebtn" image={HearthImg} onClick={clickFavorite} />
           ) : (
-            <IconButton className="userpanel-auth-statebtn" image="/search.png" onClick={clickSearch} />
+            <IconButton className="userpanel-auth-statebtn" image={SearchImg} onClick={clickSearch} />
           )}
           <div className="userpanel-auth-user">
             <div className="userpanel-auth-user-name">{user.name}</div>

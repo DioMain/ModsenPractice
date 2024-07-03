@@ -1,7 +1,7 @@
 import PropsBase from "../../types/propsBase";
 
 interface IconButtonProps extends PropsBase {
-  image: string;
+  image: any;
   onClick?: () => void;
 }
 
