@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import BookSearchResult from "../types/bookSearchResult";
+import { BookSearchResult } from "../types/bookTypes";
 import LoadState from "../types/loadState";
 import { useEffect, useState } from "react";
 import User from "../types/user";

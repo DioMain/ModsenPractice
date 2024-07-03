@@ -1,4 +1,4 @@
-import Book from "../../types/book";
+import { Book } from "../../types/bookTypes";
 import PropsBase from "../../types/propsBase";
 
 interface BookElementProps extends PropsBase {

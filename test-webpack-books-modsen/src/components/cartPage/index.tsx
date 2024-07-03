@@ -1,5 +1,5 @@
 import React from "react";
-import Book from "../../types/book";
+import { Book } from "../../types/bookTypes";
 import "./style.scss";
 
 const CartPage: React.FC<{ book: Book }> = ({ book }) => {

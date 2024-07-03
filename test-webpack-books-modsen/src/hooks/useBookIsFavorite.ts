@@ -2,7 +2,7 @@ import LoadState from "../types/loadState";
 import { useEffect, useState } from "react";
 import User from "../types/user";
 import { useAppSelector } from "./reduxHooks";
-import Book from "../types/book";
+import { Book } from "../types/bookTypes";
 
 function useBookIsFavorite(user: User, book: Book) {
   const [data, setData] = useState<boolean>(false);

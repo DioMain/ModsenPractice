@@ -21,7 +21,6 @@ function useAuth() {
       (error) => {
         setState(AuthState.Failed);
         setError(error);
-        console.log(error);
       }
     );
   }, []);

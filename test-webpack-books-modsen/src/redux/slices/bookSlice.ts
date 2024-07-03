@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import Book from "../../types/book";
+import { Book } from "../../types/bookTypes";
 
 const initialState: { value: Book | undefined } = { value: undefined };
 

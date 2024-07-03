@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import BookSearchResult from "../types/bookSearchResult";
+import { BookSearchResult } from "../types/bookTypes";
 import GoogleBooksApiQueries from "../api/googleBooksApiQueries";
 import LoadState from "../types/loadState";
 import { AxiosError } from "axios";
@@ -15,8 +15,6 @@ function useBooks(options: GoogleBooksApiOptions) {
 
   useEffect(() => {
     setState(LoadState.Loading);
-
-    console.log("aaa");
 
     if (options.search === "") {
       setData(defaultValue);

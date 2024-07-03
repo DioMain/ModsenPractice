@@ -40,4 +40,9 @@ interface Book {
   };
 }
 
-export default Book;
+interface BookSearchResult {
+  items: Book[];
+  totalItems: number;
+}
+
+export { Book, BookSearchResult };

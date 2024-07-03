@@ -10,8 +10,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "sourceMap": true,
-    "outDir": "./dist",
-    "allowJs": true
+    "outDir": "./dist"
   },
   "include": ["./src/**/*"]
 }

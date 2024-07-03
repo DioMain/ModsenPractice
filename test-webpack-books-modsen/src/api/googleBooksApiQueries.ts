@@ -1,5 +1,5 @@
 import axios from "axios";
-import BookSearchResult from "../types/bookSearchResult";
+import { BookSearchResult } from "../types/bookTypes";
 import config from "../config";
 import GoogleBooksApiOptions from "../types/googleBooksApiOptions";
 import User from "../types/user";

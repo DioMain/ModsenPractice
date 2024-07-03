@@ -4,8 +4,7 @@ import LoadState from "../../types/loadState";
 import BookElement from "./../bookElement";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { addToStartIndex } from "../../redux/slices/searchInfoSlice";
-import BookSearchResult from "../../types/bookSearchResult";
-import Book from "../../types/book";
+import { Book, BookSearchResult } from "../../types/bookTypes";
 import { setBook } from "../../redux/slices/bookSlice";
 import "./style.scss";
 
