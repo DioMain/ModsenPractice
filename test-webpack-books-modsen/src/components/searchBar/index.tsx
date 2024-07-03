@@ -8,6 +8,7 @@ import { setBook } from "../../redux/slices/bookSlice";
 
 const SearchBar: React.FC = () => {
   const categories = ["all", "art", "biography", "computers", "history", "medical", "poetry"];
+  const filters = ["relevance", "newest"];
 
   const search = useRef("");
   const category = useRef("all");
@@ -64,8 +65,9 @@ const SearchBar: React.FC = () => {
         <div className="searchbar-row2-col">
           <div className="searchbar-row2-col-title sawarabi-gothic-bold">Сортировка по</div>
           <InputSelect onSelectionChanged={onFilterChanged}>
-            <option>relevance</option>
-            <option>newest</option>
+            {filters.map((item, index) => {
+              return <option key={index}>{item}</option>;
+            })}
           </InputSelect>
         </div>
       </div>
