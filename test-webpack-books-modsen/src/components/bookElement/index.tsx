@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
-import BookElementProps from "./bookElementProps";
+import BookElementProps from "./types";
 import Imgplaceholder from "../../assets/img/book-placeholder.png";
-import "./bookElement.scss";
+import "./style.scss";
 
 const BookElement: React.FC<BookElementProps> = ({ book, onClick, style, className }) => {
   const volume = book.volumeInfo;

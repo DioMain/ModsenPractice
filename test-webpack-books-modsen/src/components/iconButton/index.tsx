@@ -1,5 +1,5 @@
-import IconButtonProps from "./iconButtonProps";
-import "./iconButton.scss";
+import IconButtonProps from "./types";
+import "./style.scss";
 import React from "react";
 
 const IconButton: React.FC<IconButtonProps> = ({ image, className, style, onClick }) => {

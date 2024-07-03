@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
-import InputSelectProps from "./inputSelectProps";
-import "./inputSelect.scss";
+import InputSelectProps from "./types";
+import "./style.scss";
 
 const InputSelect: React.FC<InputSelectProps> = ({ className, style, children, onSelectionChanged }) => {
   const selectionChanged = (evt: React.ChangeEvent<HTMLSelectElement>) => {

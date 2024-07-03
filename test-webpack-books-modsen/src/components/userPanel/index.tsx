@@ -5,10 +5,9 @@ import { firebaseData } from "../../firebase";
 import IconButton from "../iconButton";
 import PageState from "../../types/pageState";
 import { setPageState } from "../../redux/slices/pageStateSlice";
-
 import HearthImg from "./../../assets/img/heart.png";
 import SearchImg from "./../../assets/img/search.png";
-import "./userPanel.scss";
+import "./style.scss";
 
 const UserPanel: React.FC<{ pg: any }> = ({ pg }) => {
   const user = useAppSelector((state) => state.user.value);

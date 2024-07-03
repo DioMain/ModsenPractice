@@ -1,6 +1,6 @@
 import React from "react";
 import Book from "../../types/book";
-import "./cartPage.scss";
+import "./style.scss";
 
 const CartPage: React.FC<{ book: Book }> = ({ book }) => {
   let volume = book.volumeInfo;

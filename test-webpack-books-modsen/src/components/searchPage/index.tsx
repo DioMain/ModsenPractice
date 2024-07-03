@@ -7,7 +7,7 @@ import { addToStartIndex } from "../../redux/slices/searchInfoSlice";
 import BookSearchResult from "../../types/bookSearchResult";
 import Book from "../../types/book";
 import { setBook } from "../../redux/slices/bookSlice";
-import "./searchPage.scss";
+import "./style.scss";
 
 const SearchPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -73,7 +73,9 @@ const SearchPage: React.FC = () => {
 
       {loadedBooks.state == LoadState.Loading && <h1 className="searchpage-info">Загрузка...</h1>}
 
-      {loadedBooks.state == LoadState.Failed && <h1 className="searchpage-info">ОШИБКА: {loadedBooks.error?.message}</h1>}
+      {loadedBooks.state == LoadState.Failed && (
+        <h1 className="searchpage-info">ОШИБКА: {loadedBooks.error?.message}</h1>
+      )}
 
       {loadedBooks.state == LoadState.Success && loadedBooks.data.items.length == 30 && (
         <div className="searchpage-loadmore">

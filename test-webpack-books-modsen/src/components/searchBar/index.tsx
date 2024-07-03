@@ -1,7 +1,6 @@
 import React, { useCallback, useRef } from "react";
 import InputSearch from "./../inputSearch";
-
-import "./searchBar.scss";
+import "./style.scss";
 import InputSelect from "./../inputSelect";
 import { useAppDispatch } from "../../hooks/reduxHooks";
 import { setSearchInfo } from "../../redux/slices/searchInfoSlice";

@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import SearchBar from "./../searchBar";
 import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import CartPage from "./../cartPage";
 import SearchPage from "./../searchPage";
-import "./app.scss";
 import UserPanel from "../userPanel";
 import useAuth from "../../hooks/useAuth";
 import AuthState from "../../types/authState";
 import { setUser } from "../../redux/slices/userSlice";
 import PageState from "../../types/pageState";
 import FavoritePage from "../favoritePage";
+import "./style.scss";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -21,8 +21,8 @@ function App() {
 
   console.log("asds");
 
-  if (auth.state == AuthState.NotAuthed) dispatch(setUser(undefined));
-  else if (auth.state == AuthState.Authed) {
+  if (auth.state === AuthState.NotAuthed) dispatch(setUser(undefined));
+  else if (auth.state === AuthState.Authed) {
     dispatch(
       setUser({
         name: auth.data?.displayName,
