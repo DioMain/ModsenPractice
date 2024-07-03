@@ -26,7 +26,7 @@ const SearchBar: React.FC = () => {
         startIndex: 0,
       })
     );
-  }, [dispatch, search, category, filter]);
+  }, [search, category, filter]);
 
   const onCategoryChanged = useCallback(
     (value: string) => {

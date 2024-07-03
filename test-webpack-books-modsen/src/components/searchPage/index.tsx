@@ -25,13 +25,13 @@ const SearchPage: React.FC = () => {
 
   const onClickLoadmore = useCallback(() => {
     dispatch(addToStartIndex({ count: 30 }));
-  }, [dispatch, addToStartIndex]);
+  }, [addToStartIndex]);
 
   const onElementClick = useCallback(
     (book: Book) => {
       dispatch(setBook(book));
     },
-    [dispatch, setBook]
+    [setBook]
   );
 
   if (loadedBooks.state == LoadState.Success) {

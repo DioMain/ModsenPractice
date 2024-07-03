@@ -40,11 +40,13 @@ function App() {
         {pageState === PageState.Search && <SearchBar />}
       </header>
 
-      {currentBook ? (
-        <CartPage book={currentBook} />
-      ) : (
-        <>{pageState === PageState.Search ? <SearchPage /> : <FavoritePage />}</>
-      )}
+      <main>
+        {currentBook ? (
+          <CartPage book={currentBook} />
+        ) : (
+          <>{pageState === PageState.Search ? <SearchPage /> : <FavoritePage />}</>
+        )}
+      </main>
     </>
   );
 }
