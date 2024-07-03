@@ -34,15 +34,6 @@ module.exports = {
       },
     ],
   },
-  devtool: 'source-map',
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'static'),
-    },
-    compress: true,
-    port: 8080,
-    allowedHosts: 'all',
-  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html'
