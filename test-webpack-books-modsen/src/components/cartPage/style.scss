@@ -51,6 +51,15 @@ $imageW3: 196px;
 
     padding: 24px;
 
+    &-backbtn {
+      display: flex;
+      justify-content: end;
+
+      .iconbutton {
+        width: 48px;
+        height: 48px;
+      }
+    }
     &-category {
       margin-bottom: 16px;
     }

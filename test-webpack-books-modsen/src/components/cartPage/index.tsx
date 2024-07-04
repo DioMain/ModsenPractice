@@ -2,9 +2,19 @@ import React from "react";
 import { Book } from "@apptypes/bookTypes";
 import bookimgplaceholder from "@assets/img/book-placeholder.png";
 import "./style.scss";
+import IconButton from "@components/iconButton";
+import BackImage from "@assets/img/back.png";
+import { useAppDispatch } from "@hooks/reduxHooks";
+import { dropBook } from "@redux/slices/bookSlice";
 
 const CartPage: React.FC<{ book: Book }> = ({ book }) => {
+  const dispatch = useAppDispatch();
+
   const volume = book.volumeInfo;
+
+  const clickBack = () => {
+    dispatch(dropBook());
+  };
 
   return (
     <div className="cartpage">
@@ -22,6 +32,9 @@ const CartPage: React.FC<{ book: Book }> = ({ book }) => {
         )}
       </div>
       <div className="cartpage-content">
+        <div className="cartpage-content-backbtn">
+          <IconButton image={BackImage} onClick={clickBack} />
+        </div>
         <div className="cartpage-content-category">
           {volume.categories &&
             volume.categories.map((item, index) => {
