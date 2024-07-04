@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import PageState from "../../types/pageState";
+import PageState from "@apptypes/pageState";
 
 const initialState: { value: PageState } = { value: PageState.Search };
 

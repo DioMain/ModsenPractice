@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import "./style.scss";
 
 const FavoritePage: React.FC = () => {

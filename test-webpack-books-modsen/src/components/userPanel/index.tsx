@@ -1,12 +1,12 @@
-import React, { useCallback } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import React from "react";
+import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { getAuth, signInWithPopup, signOut } from "firebase/auth";
-import { firebaseData } from "../../firebase";
-import IconButton from "../iconButton";
-import PageState from "../../types/pageState";
-import { setPageState } from "../../redux/slices/pageStateSlice";
-import HearthImg from "./../../assets/img/heart.png";
-import SearchImg from "./../../assets/img/search.png";
+import { firebaseData } from "@firebase/index";
+import IconButton from "@components/iconButton";
+import PageState from "@apptypes/pageState";
+import { setPageState } from "@redux/slices/pageStateSlice";
+import HearthImg from "@assets/img/heart.png";
+import SearchImg from "@assets/img/search.png";
 import "./style.scss";
 
 const UserPanel: React.FC<{ pg: any }> = ({ pg }) => {

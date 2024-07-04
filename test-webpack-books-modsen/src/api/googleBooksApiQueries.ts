@@ -1,10 +1,10 @@
 import axios from "axios";
-import { BookSearchResult } from "../types/bookTypes";
+import { BookSearchResult } from "@apptypes/bookTypes";
 import config from "../config";
-import GoogleBooksApiOptions from "../types/googleBooksApiOptions";
-import User from "../types/user";
+import GoogleBooksApiOptions from "@apptypes/googleBooksApiOptions";
+import User from "@apptypes/user";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { firebaseData } from "../firebase";
+import { firebaseData } from "@firebase/index";
 
 class GoogleBooksApiQueries {
   public static async GetBooks(options: GoogleBooksApiOptions): Promise<BookSearchResult> {

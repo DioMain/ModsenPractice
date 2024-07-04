@@ -1,14 +1,14 @@
 import React from "react";
-import SearchBar from "./../searchBar";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import CartPage from "./../cartPage";
-import SearchPage from "./../searchPage";
-import UserPanel from "../userPanel";
-import useAuth from "../../hooks/useAuth";
-import AuthState from "../../types/authState";
-import { setUser } from "../../redux/slices/userSlice";
-import PageState from "../../types/pageState";
-import FavoritePage from "../favoritePage";
+import SearchBar from "@components/searchBar";
+import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
+import CartPage from "@components/cartPage";
+import SearchPage from "@components/searchPage";
+import UserPanel from "@components/userPanel";
+import useAuth from "@hooks/useAuth";
+import AuthState from "@apptypes/authState";
+import { setUser } from "@redux/slices/userSlice";
+import PageState from "@apptypes/pageState";
+import FavoritePage from "@components/favoritePage";
 import "./style.scss";
 
 function App() {
@@ -18,8 +18,6 @@ function App() {
   const pageState = useAppSelector((state) => state.pageState.value);
 
   const auth = useAuth();
-
-  console.log("asds");
 
   if (auth.state === AuthState.NotAuthed) dispatch(setUser(undefined));
   else if (auth.state === AuthState.Authed) {

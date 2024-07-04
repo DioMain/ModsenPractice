@@ -1,10 +1,10 @@
 import React, { useCallback, useRef } from "react";
-import InputSearch from "./../inputSearch";
+import InputSearch from "@components/inputSearch";
+import InputSelect from "@components/inputSelect";
+import { useAppDispatch } from "@hooks/reduxHooks";
+import { setSearchInfo } from "@redux/slices/searchInfoSlice";
+import { setBook } from "@redux/slices/bookSlice";
 import "./style.scss";
-import InputSelect from "./../inputSelect";
-import { useAppDispatch } from "../../hooks/reduxHooks";
-import { setSearchInfo } from "../../redux/slices/searchInfoSlice";
-import { setBook } from "../../redux/slices/bookSlice";
 
 const SearchBar: React.FC = () => {
   const categories = ["all", "art", "biography", "computers", "history", "medical", "poetry"];

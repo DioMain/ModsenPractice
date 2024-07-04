@@ -1,8 +1,8 @@
 import { AxiosError } from "axios";
-import { BookSearchResult } from "../types/bookTypes";
-import LoadState from "../types/loadState";
+import { BookSearchResult } from "@apptypes/bookTypes";
+import LoadState from "@apptypes/loadState";
 import { useEffect, useState } from "react";
-import User from "../types/user";
+import User from "@apptypes/user";
 import { useAppSelector } from "./reduxHooks";
 
 const defaultValue = { totalItems: 0, items: [] };

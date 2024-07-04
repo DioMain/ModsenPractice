@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-import { BookSearchResult } from "../types/bookTypes";
-import GoogleBooksApiQueries from "../api/googleBooksApiQueries";
-import LoadState from "../types/loadState";
+import { BookSearchResult } from "@apptypes/bookTypes";
+import GoogleBooksApiQueries from "@api/googleBooksApiQueries";
+import LoadState from "@apptypes/loadState";
 import { AxiosError } from "axios";
-import GoogleBooksApiOptions from "../types/googleBooksApiOptions";
+import GoogleBooksApiOptions from "@apptypes/googleBooksApiOptions";
 
 const defaultValue = { totalItems: 0, items: [] };
 

@@ -1,7 +1,7 @@
 import React from "react";
-import { Book } from "../../types/bookTypes";
+import { Book } from "@apptypes/bookTypes";
+import bookimgplaceholder from "@assets/img/book-placeholder.png";
 import "./style.scss";
-import bookimgplaceholder from "./../../assets/img/book-placeholder.png";
 
 const CartPage: React.FC<{ book: Book }> = ({ book }) => {
   let volume = book.volumeInfo;

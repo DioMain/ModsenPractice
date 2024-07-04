@@ -10,7 +10,18 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "sourceMap": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "baseUrl": "src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@styles/*": ["styles/*"],
+      "@apptypes/*": ["types/*"],
+      "@hooks/*": ["hooks/*"],
+      "@api/*": ["api/*"],
+      "@redux/*": ["redux/*"],
+      "@firebase/*": ["firebase/*"],
+      "@assets/*": ["assets/*"]
+    }
   },
   "include": ["./src/**/*"]
 }
