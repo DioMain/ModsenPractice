@@ -64,7 +64,7 @@ const SearchPage: React.FC = () => {
           {loadedBooks.state == LoadState.Loading && <h1 className="searchpage-info">Загрузка...</h1>}
           <div className="searchpage-content">
             {books.current.items.map((item, i) => {
-              return <BookElement key={i} book={item} onClick={onElementClick} />;
+              return <BookElement key={`book-${i}`} book={item} onClick={onElementClick} />;
             })}
           </div>
         </>

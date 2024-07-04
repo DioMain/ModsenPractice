@@ -58,7 +58,7 @@ const SearchBar: React.FC = () => {
           <div className="searchbar-row2-col-title sawarabi-gothic-bold">Категория</div>
           <InputSelect onSelectionChanged={onCategoryChanged}>
             {categories.map((item, index) => {
-              return <option key={index}>{item}</option>;
+              return <option key={`category-${index}`}>{item}</option>;
             })}
           </InputSelect>
         </div>
@@ -66,7 +66,7 @@ const SearchBar: React.FC = () => {
           <div className="searchbar-row2-col-title sawarabi-gothic-bold">Сортировка по</div>
           <InputSelect onSelectionChanged={onFilterChanged}>
             {filters.map((item, index) => {
-              return <option key={index}>{item}</option>;
+              return <option key={`filter-${index}`}>{item}</option>;
             })}
           </InputSelect>
         </div>
