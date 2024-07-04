@@ -3,7 +3,7 @@ import BookElementProps from "./types";
 import Imgplaceholder from "@assets/img/book-placeholder.png";
 import "./style.scss";
 
-const BookElement: React.FC<BookElementProps> = ({ book, onClick, style, className }) => {
+const BookElement: React.FC<BookElementProps> = ({ book, onClick, className }) => {
   const volume = book.volumeInfo;
 
   const onElementClick = useCallback(() => {
@@ -11,7 +11,7 @@ const BookElement: React.FC<BookElementProps> = ({ book, onClick, style, classNa
   }, [onClick, book]);
 
   return (
-    <div className={`bookelement ${className}`} style={style} onClick={onElementClick}>
+    <div className={`bookelement ${className}`} onClick={onElementClick}>
       <div className="bookelement-img">
         {volume.imageLinks ? <img src={volume.imageLinks.thumbnail} /> : <img src={Imgplaceholder} />}
       </div>

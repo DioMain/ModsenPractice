@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import "./style.scss";
 
 const FavoritePage: React.FC = () => {
-  const dispatch = useAppDispatch();
+  //const dispatch = useAppDispatch();
 
   ///TODO
 

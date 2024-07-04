@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
-import "./style.scss";
 import InputSearchProps from "./types";
+import "./style.scss";
 
 const InputSearch: React.FC<InputSearchProps> = ({ onSearchSubmit, onTextChanged, style, className }) => {
   const textChanged = useCallback(

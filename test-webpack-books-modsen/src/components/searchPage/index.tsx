@@ -12,19 +12,21 @@ const SearchPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const searchInfo = useAppSelector((state) => state.searchInfo);
 
+  const maxBooksCount = 30;
+
   const books = useRef<BookSearchResult>({ totalItems: 0, items: [] });
   const booksBuffer = useRef<any>({ items: [], searchInfo: searchInfo });
 
   const loadedBooks = useBooks({
     search: searchInfo.search,
-    maxResults: 30,
+    maxResults: maxBooksCount,
     startIndex: searchInfo.startIndex,
     orderBy: searchInfo.filter,
     category: searchInfo.category,
   });
 
   const onClickLoadmore = useCallback(() => {
-    dispatch(addToStartIndex({ count: 30 }));
+    dispatch(addToStartIndex({ count: maxBooksCount }));
   }, [addToStartIndex]);
 
   const onElementClick = useCallback(
@@ -34,12 +36,12 @@ const SearchPage: React.FC = () => {
     [setBook]
   );
 
-  if (loadedBooks.state == LoadState.Success) {
+  if (loadedBooks.state === LoadState.Success) {
     books.current = {
       totalItems: loadedBooks.data.totalItems,
       items: [...booksBuffer.current.items, ...loadedBooks.data.items],
     };
-  } else if (loadedBooks.state == LoadState.Loading) {
+  } else if (loadedBooks.state === LoadState.Loading) {
     if (
       booksBuffer.current.searchInfo.search !== searchInfo.search ||
       booksBuffer.current.searchInfo.filter !== searchInfo.filter ||
@@ -70,13 +72,13 @@ const SearchPage: React.FC = () => {
         </>
       )}
 
-      {loadedBooks.state == LoadState.Loading && <h1 className="searchpage-info">Загрузка...</h1>}
+      {loadedBooks.state === LoadState.Loading && <h1 className="searchpage-info">Загрузка...</h1>}
 
-      {loadedBooks.state == LoadState.Failed && (
+      {loadedBooks.state === LoadState.Failed && (
         <h1 className="searchpage-info">ОШИБКА: {loadedBooks.error?.message}</h1>
       )}
 
-      {loadedBooks.state == LoadState.Success && loadedBooks.data.items.length == 30 && (
+      {loadedBooks.state === LoadState.Success && loadedBooks.data.items.length === maxBooksCount && (
         <div className="searchpage-loadmore">
           <input type="button" value="Ещё 30" onClick={onClickLoadmore} />
         </div>

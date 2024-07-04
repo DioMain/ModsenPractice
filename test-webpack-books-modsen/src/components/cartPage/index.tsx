@@ -4,7 +4,7 @@ import bookimgplaceholder from "@assets/img/book-placeholder.png";
 import "./style.scss";
 
 const CartPage: React.FC<{ book: Book }> = ({ book }) => {
-  let volume = book.volumeInfo;
+  const volume = book.volumeInfo;
 
   return (
     <div className="cartpage">
@@ -26,7 +26,7 @@ const CartPage: React.FC<{ book: Book }> = ({ book }) => {
           {volume.categories &&
             volume.categories.map((item, index) => {
               return (
-                <span key={index}>
+                <span key={`book-categories-${index}`}>
                   {item} {volume.categories.length - 1 && <> / </>}
                 </span>
               );
