@@ -27,5 +27,6 @@
       "pragma": "React",
       "version": "detect"
     }
-  }
+  },
+  "ignorePatterns": ["node_modules/", "dist/"]
 }
