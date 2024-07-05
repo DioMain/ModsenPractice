@@ -22,7 +22,7 @@ class GoogleBooksApiQueries {
   }
 
   public static async GetFavoriteBooks(user: User): Promise<BookSearchResult> {
-    let result: BookSearchResult = {
+    const result: BookSearchResult = {
       totalItems: 0,
       items: [],
     };

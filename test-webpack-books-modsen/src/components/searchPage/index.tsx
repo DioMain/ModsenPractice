@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { addToStartIndex } from "@redux/slices/searchInfoSlice";
 import { Book, BookSearchResult } from "@apptypes/bookTypes";
@@ -27,13 +27,13 @@ const SearchPage: React.FC = () => {
 
   const onClickLoadmore = useCallback(() => {
     dispatch(addToStartIndex({ count: maxBooksCount }));
-  }, [addToStartIndex]);
+  }, [dispatch]);
 
   const onElementClick = useCallback(
     (book: Book) => {
       dispatch(setBook(book));
     },
-    [setBook]
+    [dispatch],
   );
 
   if (loadedBooks.state === LoadState.Success) {

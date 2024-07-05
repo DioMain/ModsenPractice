@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from "react";
+import { useAppDispatch } from "@hooks/reduxHooks";
 import InputSearch from "@components/inputSearch";
 import InputSelect from "@components/inputSelect";
-import { useAppDispatch } from "@hooks/reduxHooks";
 import { setSearchInfo } from "@redux/slices/searchInfoSlice";
 import { setBook } from "@redux/slices/bookSlice";
 import "./style.scss";
@@ -24,22 +24,22 @@ const SearchBar: React.FC = () => {
         category: category.current,
         filter: filter.current,
         startIndex: 0,
-      })
+      }),
     );
-  }, [search, category, filter]);
+  }, [dispatch, search, category, filter]);
 
   const onCategoryChanged = useCallback(
     (value: string) => {
       category.current = value;
     },
-    [category]
+    [category],
   );
 
   const onFilterChanged = useCallback(
     (value: string) => {
       filter.current = value;
     },
-    [filter]
+    [filter],
   );
 
   return (
