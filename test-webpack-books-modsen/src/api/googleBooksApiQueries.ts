@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BookSearchResult } from "@apptypes/bookTypes";
+import { Book, BookSearchResult } from "@apptypes/bookTypes";
 import config from "../config";
 import GoogleBooksApiOptions from "@apptypes/googleBooksApiOptions";
 import User from "@apptypes/user";
@@ -42,6 +42,32 @@ class GoogleBooksApiQueries {
       result.totalItems++;
       result.items.push(responce.data);
     });
+
+    return result;
+  }
+
+  public static async GetFavoriteBook(user: User, bookId: string): Promise<Book | null> {
+    let result: Book | null = null;
+
+    const dbq = query(
+      collection(firebaseData.database, "favoritebooks"),
+      where("userid", "==", user.id),
+      where("bookid", "==", bookId)
+    );
+
+    const snapshot = await getDocs(dbq);
+
+    if (snapshot.size > 0) {
+      const data = snapshot.docs[0].data();
+
+      const responce = await axios.get((config.googleApiUrl + `/${data.bookid}`) as string, {
+        params: {
+          key: config.googleApiKey,
+        },
+      });
+
+      result = responce.data as Book;
+    }
 
     return result;
   }
