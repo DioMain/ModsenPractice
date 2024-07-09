@@ -1,21 +1,18 @@
-import LoadState from "@apptypes/loadState";
 import { useEffect, useState } from "react";
 import User from "@apptypes/user";
-import { useAppSelector } from "./reduxHooks";
 import { Book } from "@apptypes/bookTypes";
+import { bookIsFavorite } from "@firebase/queries";
 
-function useBookIsFavorite(user: User, book: Book) {
-  const [data, setData] = useState<boolean>(false);
-  const [state, setState] = useState<LoadState>(LoadState.Loading);
-  const [error, setError] = useState<string>("");
-
-  const pageState = useAppSelector((state) => state.pageState.value);
+function useBookIsFavorite(user: User | undefined, book: Book) {
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
   useEffect(() => {
-    ///TODO
-  }, [user, pageState]);
+    if (user) {
+      bookIsFavorite(user, book).then((val) => setIsFavorite(val));
+    }
+  }, [user]);
 
-  return { data, state, error };
+  return { isFavorite, setIsFavorite };
 }
 
 export default useBookIsFavorite;

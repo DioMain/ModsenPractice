@@ -1,7 +1,7 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { getAuth, signInWithPopup, signOut } from "firebase/auth";
-import { firebaseData } from "@firebase/index";
+import { firebaseData } from "@firebase/data";
 import IconButton from "@components/iconButton";
 import PageState from "@apptypes/pageState";
 import { setPageState } from "@redux/slices/pageStateSlice";

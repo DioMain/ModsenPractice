@@ -53,7 +53,7 @@ $imageW3: 196px;
 
     &-backbtn {
       display: flex;
-      justify-content: end;
+      justify-content: space-between;
 
       .iconbutton {
         width: 48px;
@@ -61,6 +61,7 @@ $imageW3: 196px;
       }
     }
     &-category {
+      margin-top: 16px;
       margin-bottom: 16px;
     }
     &-title {
