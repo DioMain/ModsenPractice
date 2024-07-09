@@ -2,6 +2,7 @@ interface Book {
   id: string;
   etag: string;
   selfLink: string;
+  isFavorite?: boolean;
   volumeInfo: {
     title: string;
 

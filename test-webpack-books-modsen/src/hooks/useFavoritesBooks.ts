@@ -3,7 +3,7 @@ import { BookSearchResult } from "@apptypes/bookTypes";
 import LoadState from "@apptypes/loadState";
 import { useEffect, useState } from "react";
 import User from "@apptypes/user";
-import { useAppSelector } from "./reduxHooks";
+import GoogleBooksApiQueries from "@api/googleBooksApiQueries";
 
 const defaultValue = { totalItems: 0, items: [] };
 
@@ -12,11 +12,20 @@ function useFavoriteBooks(user: User) {
   const [state, setState] = useState<LoadState>(LoadState.Loading);
   const [error, setError] = useState<AxiosError>();
 
-  const pageState = useAppSelector((state) => state.pageState.value);
+  //const pageState = useAppSelector((state) => state.pageState.value);
 
   useEffect(() => {
-    ///TODO
-  }, [user, pageState]);
+    setState(LoadState.Loading);
+    GoogleBooksApiQueries.GetFavoriteBooks(user)
+      .then((value) => {
+        setData(value);
+        setState(LoadState.Success);
+      })
+      .catch((error) => {
+        setError(error);
+        setState(LoadState.Failed);
+      });
+  }, []);
 
   return { data, state, error };
 }

@@ -1,34 +1,44 @@
 import React from "react";
 import "./style.scss";
+import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
+import useFavoriteBooks from "@hooks/useFavoritesBooks";
+import User from "@apptypes/user";
+import LoadState from "@apptypes/loadState";
+import BookElement from "@components/bookElement";
+import { Book } from "@apptypes/bookTypes";
+import { setBook } from "@redux/slices/bookSlice";
 
 const FavoritePage: React.FC = () => {
-  //const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
-  ///TODO
+  const user = useAppSelector((state) => state.user.value);
+
+  const { data, state, error } = useFavoriteBooks(user as User);
+
+  const onElementClick = (book: Book) => {
+    dispatch(setBook(book));
+  };
 
   return (
-    /*<div className="favoritepage">
+    <div className="favoritepage">
       <h1 className="sawarabi-gothic-regular favoritepage-itemcount">
-        {books.current.totalItems > 0 ? <>Найдено {books.current.totalItems}</> : <>Ничего не найдено</>}
+        {data.totalItems > 0 ? <>Найдено {data.totalItems}</> : <>Ничего не найдено</>}
       </h1>
-      {books.current.items.length > 0 && (
+      {data.totalItems > 0 && (
         <>
-          {loadedBooks.state == LoadState.Loading && <h1 className="favoritepage-info">Загрузка...</h1>}
+          {state == LoadState.Loading && <h1 className="favoritepage-info">Загрузка...</h1>}
           <div className="favoritepage-content">
-            {books.current.items.map((item, i) => {
+            {data.items.map((item, i) => {
               return <BookElement key={i} book={item} onClick={onElementClick} />;
             })}
           </div>
         </>
       )}
 
-      {loadedBooks.state == LoadState.Loading && <h1 className="favoritepage-info">Загрузка...</h1>}
+      {state == LoadState.Loading && <h1 className="favoritepage-info">Загрузка...</h1>}
 
-      {loadedBooks.state == LoadState.Failed && (
-        <h1 className="favoritepage-info">ОШИБКА: {loadedBooks.error?.message}</h1>
-      )}
-    </div>*/
-    <></>
+      {state == LoadState.Failed && <h1 className="favoritepage-info">ОШИБКА: {error?.message}</h1>}
+    </div>
   );
 };
 

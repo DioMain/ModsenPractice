@@ -3,8 +3,8 @@ import { BookSearchResult } from "@apptypes/bookTypes";
 import config from "../config";
 import GoogleBooksApiOptions from "@apptypes/googleBooksApiOptions";
 import User from "@apptypes/user";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { firebaseData } from "@firebase/index";
+import { getDocs, query, where } from "firebase/firestore";
+import { firebaseData } from "@firebase/data";
 
 class GoogleBooksApiQueries {
   public static async GetBooks(options: GoogleBooksApiOptions): Promise<BookSearchResult> {
@@ -27,10 +27,10 @@ class GoogleBooksApiQueries {
       items: [],
     };
 
-    const dbq = query(collection(firebaseData.database, "favoritebooks"), where("userid", "==", user.id));
+    const dbq = query(firebaseData.favoriteBooksCollection, where("userid", "==", user.id));
     const snapshot = await getDocs(dbq);
 
-    snapshot.forEach(async (item) => {
+    for (const item of snapshot.docs) {
       const data = item.data();
 
       const responce = await axios.get((config.googleApiUrl + `/${data.bookid}`) as string, {
@@ -41,7 +41,7 @@ class GoogleBooksApiQueries {
 
       result.totalItems++;
       result.items.push(responce.data);
-    });
+    }
 
     return result;
   }
