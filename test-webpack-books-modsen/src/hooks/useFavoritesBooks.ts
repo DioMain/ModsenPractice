@@ -15,12 +15,10 @@ function useFavoriteBooks(user: User) {
   //const pageState = useAppSelector((state) => state.pageState.value);
 
   useEffect(() => {
+    setState(LoadState.Loading);
     GoogleBooksApiQueries.GetFavoriteBooks(user)
       .then((value) => {
-        if (data.totalItems != value.totalItems) {
-          setData(data);
-        }
-
+        setData(value);
         setState(LoadState.Success);
       })
       .catch((error) => {
