@@ -4,7 +4,7 @@ import config from "../config";
 import GoogleBooksApiOptions from "@apptypes/googleBooksApiOptions";
 import User from "@apptypes/user";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { firebaseData } from "@firebase/index";
+import { firebaseData } from "@firebase/data";
 
 class GoogleBooksApiQueries {
   public static async GetBooks(options: GoogleBooksApiOptions): Promise<BookSearchResult> {

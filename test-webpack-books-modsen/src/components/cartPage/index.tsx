@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Book } from "@apptypes/bookTypes";
 import bookimgplaceholder from "@assets/img/book-placeholder.png";
 import "./style.scss";
@@ -23,6 +23,10 @@ const CartPage: React.FC<{ book: Book }> = ({ book }) => {
     dispatch(dropBook());
   };
 
+  const clickSetFavorite = useCallback(() => {}, []);
+
+  const clickUnsetFavorite = useCallback(() => {}, []);
+
   return (
     <div className="cartpage">
       <div className="cartpage-img">
@@ -42,7 +46,13 @@ const CartPage: React.FC<{ book: Book }> = ({ book }) => {
         <div className="cartpage-content-backbtn">
           <IconButton image={BackImage} onClick={clickBack} />
           {isFavorite.state === LoadState.Success && user && (
-            <>{!isFavorite.data ? <IconButton image={HeartImage} /> : <IconButton image={CancelImage} />}</>
+            <>
+              {!isFavorite.data ? (
+                <IconButton image={HeartImage} onClick={clickSetFavorite} />
+              ) : (
+                <IconButton image={CancelImage} onClick={clickUnsetFavorite} />
+              )}
+            </>
           )}
         </div>
         <div className="cartpage-content-category">
