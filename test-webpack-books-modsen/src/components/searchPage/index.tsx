@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useRef } from "react";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { addToStartIndex } from "@redux/slices/searchInfoSlice";
 import { Book, BookSearchResult } from "@apptypes/bookTypes";
@@ -24,9 +24,9 @@ const SearchPage: React.FC = () => {
     category: searchInfo.category,
   });
 
-  const onClickLoadmore = useCallback(() => {
+  const onClickLoadmore = () => {
     dispatch(addToStartIndex({ count: maxBooksCount }));
-  }, [dispatch]);
+  };
 
   const onElementClick = (book: Book) => {
     window.location.assign(`/book/${book.id}`);

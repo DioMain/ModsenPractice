@@ -13,34 +13,37 @@ import "./style.scss";
 
 function App() {
   const dispatch = useAppDispatch();
-
   const auth = useAuth();
 
-  if (auth.state === AuthState.NotAuthed) dispatch(setUser(undefined));
-  else if (auth.state === AuthState.Authed) {
-    dispatch(
-      setUser({
-        name: auth.data?.displayName,
-        id: auth.data?.email,
-        photoUrl: auth.data?.photoURL,
-      })
-    );
-  }
+  switch (auth.state) {
+    case AuthState.Loading:
+      return <></>;
 
-  if (auth.state == AuthState.Loading) return <></>;
+    case AuthState.NotAuthed:
+      dispatch(setUser(undefined));
+      break;
+
+    case AuthState.Authed:
+      dispatch(
+        setUser({
+          name: auth.data?.displayName,
+          id: auth.data?.email,
+          photoUrl: auth.data?.photoURL,
+        })
+      );
+      break;
+  }
 
   return (
     <>
       <header>
         <UserPanel />
-
         <BrowserRouter>
           <Routes>
             <Route path="/" Component={SearchBar} />
           </Routes>
         </BrowserRouter>
       </header>
-
       <main>
         <BrowserRouter>
           <Routes>
