@@ -1,51 +1,45 @@
 import React from "react";
-import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
+import { useAppSelector } from "@hooks/reduxHooks";
 import { getAuth, signInWithPopup, signOut } from "firebase/auth";
 import { firebaseData } from "@firebase/data";
 import IconButton from "@components/iconButton";
-import PageState from "@apptypes/pageState";
-import { setPageState } from "@redux/slices/pageStateSlice";
 import HearthImg from "@assets/img/heart.png";
 import SearchImg from "@assets/img/search.png";
 import "./style.scss";
 
-const UserPanel: React.FC<{ pg: any }> = ({ pg }) => {
+const UserPanel: React.FC = () => {
   const user = useAppSelector((state) => state.user.value);
-  //const pageState = useAppSelector((state) => state.pageState.value);
-
-  const dispatch = useAppDispatch();
+  const isFavorite = window.location.pathname.endsWith("favorites");
 
   const clickLogin = () => {
     const auth = getAuth();
 
-    signInWithPopup(auth, firebaseData.authProvider)
-      .then(() => console.log("logined"))
-      .catch((error) => console.log(error));
+    signInWithPopup(auth, firebaseData.authProvider).catch((error) => console.log(error));
   };
 
   const clickLogout = () => {
     const auth = getAuth();
 
-    dispatch(setPageState(PageState.Search));
-
     signOut(auth)
-      .then(() => console.log("logout"))
+      .then(() => {
+        if (isFavorite) window.location.assign("/");
+      })
       .catch((error) => console.log(error));
   };
 
   const clickFavorite = () => {
-    dispatch(setPageState(PageState.Favorite));
+    window.location.assign("/favorites");
   };
 
   const clickSearch = () => {
-    dispatch(setPageState(PageState.Search));
+    window.location.assign("/");
   };
 
   return (
     <div className="userpanel">
       {user ? (
         <div className="userpanel-auth">
-          {pg === PageState.Search ? (
+          {!isFavorite ? (
             <IconButton className="userpanel-auth-statebtn" image={HearthImg} onClick={clickFavorite} />
           ) : (
             <IconButton className="userpanel-auth-statebtn" image={SearchImg} onClick={clickSearch} />

@@ -12,8 +12,6 @@ function useFavoriteBooks(user: User) {
   const [state, setState] = useState<LoadState>(LoadState.Loading);
   const [error, setError] = useState<AxiosError>();
 
-  //const pageState = useAppSelector((state) => state.pageState.value);
-
   useEffect(() => {
     setState(LoadState.Loading);
     GoogleBooksApiQueries.GetFavoriteBooks(user)
@@ -25,7 +23,7 @@ function useFavoriteBooks(user: User) {
         setError(error);
         setState(LoadState.Failed);
       });
-  }, []);
+  }, [user]);
 
   return { data, state, error };
 }
