@@ -41,14 +41,6 @@ function App() {
         </BrowserRouter>
       </header>
 
-      {/* <main>
-        {currentBook ? (
-          <CartPage book={currentBook} />
-        ) : (
-          <>{pageState === PageState.Search ? <SearchPage /> : <FavoritePage />}</>
-        )}
-      </main> */}
-
       <main>
         <BrowserRouter>
           <Routes>
