@@ -3,7 +3,6 @@ import { useAppDispatch } from "@hooks/reduxHooks";
 import InputSearch from "@components/inputSearch";
 import InputSelect from "@components/inputSelect";
 import { setSearchInfo } from "@redux/slices/searchInfoSlice";
-import { setBook } from "@redux/slices/bookSlice";
 import "./style.scss";
 
 const SearchBar: React.FC = () => {
@@ -17,14 +16,13 @@ const SearchBar: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const onSearchSubmit = useCallback(() => {
-    dispatch(setBook(undefined));
     dispatch(
       setSearchInfo({
         search: search.current,
         category: category.current,
         filter: filter.current,
         startIndex: 0,
-      }),
+      })
     );
   }, [dispatch, search, category, filter]);
 
@@ -32,14 +30,14 @@ const SearchBar: React.FC = () => {
     (value: string) => {
       category.current = value;
     },
-    [category],
+    [category]
   );
 
   const onFilterChanged = useCallback(
     (value: string) => {
       filter.current = value;
     },
-    [filter],
+    [filter]
   );
 
   return (

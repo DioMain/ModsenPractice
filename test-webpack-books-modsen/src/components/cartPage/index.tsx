@@ -1,45 +1,51 @@
 import React, { useCallback } from "react";
-import { Book } from "@apptypes/bookTypes";
 import bookimgplaceholder from "@assets/img/book-placeholder.png";
-import "./style.scss";
 import IconButton from "@components/iconButton";
 import BackImage from "@assets/img/back.png";
 import HeartImage from "@assets/img/heart.png";
 import CancelImage from "@assets/img/heartbreak.png";
-import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
-import { dropBook } from "@redux/slices/bookSlice";
+import { useAppSelector } from "@hooks/reduxHooks";
 import useBookIsFavorite from "@hooks/useBookIsFavorite";
 import { addBookToFavorite, removeBookFromFavorite } from "@firebase/queries";
 import User from "@apptypes/user";
+import useBook from "@hooks/useBook";
+import "./style.scss";
+import LoadState from "@apptypes/loadState";
 
-const CartPage: React.FC<{ book: Book }> = ({ book }) => {
-  const dispatch = useAppDispatch();
-
+const CartPage: React.FC = () => {
   const user = useAppSelector((state) => state.user.value);
-  const { isFavorite, setIsFavorite } = useBookIsFavorite(user, book);
 
-  const volume = book.volumeInfo;
+  const hrefs = window.location.pathname.split("/");
+
+  const book = useBook(hrefs[hrefs.length - 1]);
+
+  const { isFavorite, setIsFavorite } = useBookIsFavorite(user, book.data);
+
+  const volume = book.data?.volumeInfo;
 
   const clickBack = () => {
-    dispatch(dropBook());
+    window.location.assign("/");
   };
 
   const clickSetFavorite = useCallback(async () => {
-    await addBookToFavorite(user as User, book);
+    if (book.data) await addBookToFavorite(user as User, book.data);
 
     setIsFavorite(true);
   }, [user, book, setIsFavorite]);
 
   const clickUnsetFavorite = useCallback(async () => {
-    await removeBookFromFavorite(user as User, book);
+    if (book.data) await removeBookFromFavorite(user as User, book.data);
 
     setIsFavorite(false);
   }, [user, book, setIsFavorite]);
 
+  if (book.state === LoadState.Failed) return <>ERROR</>;
+  if (book.state === LoadState.Loading) return <>loading...</>;
+
   return (
     <div className="cartpage">
       <div className="cartpage-img">
-        {volume.imageLinks ? <img src={volume.imageLinks.thumbnail} /> : <img src={bookimgplaceholder} />}
+        {volume?.imageLinks ? <img src={volume.imageLinks.thumbnail} /> : <img src={bookimgplaceholder} />}
       </div>
       <div className="cartpage-content">
         <div className="cartpage-content-backbtn">
@@ -55,7 +61,7 @@ const CartPage: React.FC<{ book: Book }> = ({ book }) => {
           )}
         </div>
         <div className="cartpage-content-category">
-          {volume.categories &&
+          {volume?.categories &&
             volume.categories.map((item, index) => {
               return (
                 <span key={`book-categories-${index}`}>
@@ -64,10 +70,10 @@ const CartPage: React.FC<{ book: Book }> = ({ book }) => {
               );
             })}
         </div>
-        <div className="cartpage-content-title">{volume.title}</div>
-        <div className="cartpage-content-author">{volume.authors && volume.authors[0]}</div>
+        <div className="cartpage-content-title">{volume?.title}</div>
+        <div className="cartpage-content-author">{volume?.authors && volume.authors[0]}</div>
         <div className="cartpage-content-description">
-          <p>{volume.description}</p>
+          <p>{volume?.description}</p>
         </div>
       </div>
     </div>

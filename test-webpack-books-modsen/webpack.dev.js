@@ -14,5 +14,6 @@ module.exports = merge(common, {
     compress: true,
     port: 8080,
     allowedHosts: 'all',
+    historyApiFallback: true
   }
 });

@@ -1,22 +1,19 @@
 import React from "react";
 import "./style.scss";
-import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
+import { useAppSelector } from "@hooks/reduxHooks";
 import useFavoriteBooks from "@hooks/useFavoritesBooks";
 import User from "@apptypes/user";
 import LoadState from "@apptypes/loadState";
 import BookElement from "@components/bookElement";
 import { Book } from "@apptypes/bookTypes";
-import { setBook } from "@redux/slices/bookSlice";
 
 const FavoritePage: React.FC = () => {
-  const dispatch = useAppDispatch();
-
   const user = useAppSelector((state) => state.user.value);
 
   const { data, state, error } = useFavoriteBooks(user as User);
 
   const onElementClick = (book: Book) => {
-    dispatch(setBook(book));
+    window.location.assign(`book/${book.id}`);
   };
 
   return (
@@ -37,7 +34,7 @@ const FavoritePage: React.FC = () => {
 
       {state == LoadState.Loading && <h1 className="favoritepage-info">Загрузка...</h1>}
 
-      {state == LoadState.Failed && <h1 className="favoritepage-info">ОШИБКА: {error?.message}</h1>}
+      {state == LoadState.Failed && user && <h1 className="favoritepage-info">ОШИБКА: {error?.message}</h1>}
     </div>
   );
 };
