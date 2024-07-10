@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BookSearchResult } from "@apptypes/bookTypes";
+import { Book, BookSearchResult } from "@apptypes/bookTypes";
 import config from "../config";
 import GoogleBooksApiOptions from "@apptypes/googleBooksApiOptions";
 import User from "@apptypes/user";
@@ -21,6 +21,16 @@ class GoogleBooksApiQueries {
     return responce.data;
   }
 
+  public static async GetBook(bookId: string): Promise<Book> {
+    const responce = await axios.get(config.googleApiUrl + `/${bookId}`, {
+      params: {
+        key: config.googleApiKey,
+      },
+    });
+
+    return responce.data;
+  }
+
   public static async GetFavoriteBooks(user: User): Promise<BookSearchResult> {
     const result: BookSearchResult = {
       totalItems: 0,
@@ -33,7 +43,7 @@ class GoogleBooksApiQueries {
     for (const item of snapshot.docs) {
       const data = item.data();
 
-      const responce = await axios.get((config.googleApiUrl + `/${data.bookid}`) as string, {
+      const responce = await axios.get(config.googleApiUrl + `/${data.bookid}`, {
         params: {
           key: config.googleApiKey,
         },

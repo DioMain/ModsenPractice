@@ -2,7 +2,6 @@ import React, { useCallback, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { addToStartIndex } from "@redux/slices/searchInfoSlice";
 import { Book, BookSearchResult } from "@apptypes/bookTypes";
-import { setBook } from "@redux/slices/bookSlice";
 import useBooks from "@hooks/useBooks";
 import LoadState from "@apptypes/loadState";
 import BookElement from "@components/bookElement";
@@ -29,12 +28,9 @@ const SearchPage: React.FC = () => {
     dispatch(addToStartIndex({ count: maxBooksCount }));
   }, [dispatch]);
 
-  const onElementClick = useCallback(
-    (book: Book) => {
-      dispatch(setBook(book));
-    },
-    [dispatch],
-  );
+  const onElementClick = (book: Book) => {
+    window.location.assign(`/book/${book.id}`);
+  };
 
   if (loadedBooks.state === LoadState.Success) {
     books.current = {
