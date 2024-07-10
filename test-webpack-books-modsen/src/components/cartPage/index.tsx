@@ -11,17 +11,14 @@ import User from "@apptypes/user";
 import useBook from "@hooks/useBook";
 import "./style.scss";
 import LoadState from "@apptypes/loadState";
+import { Book } from "@apptypes/bookTypes";
 
 const CartPage: React.FC = () => {
   const user = useAppSelector((state) => state.user.value);
-
   const hrefs = window.location.pathname.split("/");
-
   const book = useBook(hrefs[hrefs.length - 1]);
 
   const { isFavorite, setIsFavorite } = useBookIsFavorite(user, book.data);
-
-  const volume = book.data?.volumeInfo;
 
   const clickBack = () => {
     window.location.assign("/");
@@ -39,8 +36,10 @@ const CartPage: React.FC = () => {
     setIsFavorite(false);
   }, [user, book, setIsFavorite]);
 
-  if (book.state === LoadState.Failed) return <>ERROR</>;
-  if (book.state === LoadState.Loading) return <>loading...</>;
+  if (book.state === LoadState.Failed) return <h3>ERROR: {book.error?.message}</h3>;
+  if (book.state === LoadState.Loading) return <></>;
+
+  const volume = (book.data as Book).volumeInfo;
 
   return (
     <div className="cartpage">
@@ -52,16 +51,16 @@ const CartPage: React.FC = () => {
           <IconButton image={BackImage} onClick={clickBack} />
           {user && (
             <>
-              {!isFavorite ? (
-                <IconButton image={HeartImage} onClick={clickSetFavorite} />
-              ) : (
+              {isFavorite ? (
                 <IconButton image={CancelImage} onClick={clickUnsetFavorite} />
+              ) : (
+                <IconButton image={HeartImage} onClick={clickSetFavorite} />
               )}
             </>
           )}
         </div>
         <div className="cartpage-content-category">
-          {volume?.categories &&
+          {volume.categories &&
             volume.categories.map((item, index) => {
               return (
                 <span key={`book-categories-${index}`}>
@@ -70,10 +69,10 @@ const CartPage: React.FC = () => {
               );
             })}
         </div>
-        <div className="cartpage-content-title">{volume?.title}</div>
-        <div className="cartpage-content-author">{volume?.authors && volume.authors[0]}</div>
+        <div className="cartpage-content-title">{volume.title}</div>
+        <div className="cartpage-content-author">{volume.authors && volume.authors[0]}</div>
         <div className="cartpage-content-description">
-          <p>{volume?.description}</p>
+          <p>{volume.description}</p>
         </div>
       </div>
     </div>
