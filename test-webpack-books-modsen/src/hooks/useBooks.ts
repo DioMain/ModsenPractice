@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-
+import { useEffect, useRef, useState } from "react";
 import { BookSearchResult } from "@apptypes/bookTypes";
 import GoogleBooksApiQueries from "@api/googleBooksApiQueries";
 import LoadState from "@apptypes/loadState";
@@ -13,8 +12,12 @@ function useBooks(options: GoogleBooksApiOptions) {
   const [state, setState] = useState<LoadState>(LoadState.Loading);
   const [error, setError] = useState<AxiosError>();
 
+  const previewData = useRef<BookSearchResult>(defaultValue);
+
   useEffect(() => {
     setState(LoadState.Loading);
+
+    previewData.current = data;
 
     if (options.search === "") {
       setData(defaultValue);
@@ -22,9 +25,9 @@ function useBooks(options: GoogleBooksApiOptions) {
     } else {
       GoogleBooksApiQueries.GetBooks(options)
         .then((Data) => {
-          if (Data.totalItems == 0) setData(defaultValue);
-          else setData(Data);
+          if (previewData.current.totalItems === 0) previewData.current.totalItems = Data.totalItems;
 
+          setData({ totalItems: previewData.current.totalItems, items: [...previewData.current.items, ...Data.items] });
           setState(LoadState.Success);
         })
         .catch((error) => {
@@ -34,7 +37,7 @@ function useBooks(options: GoogleBooksApiOptions) {
     }
   }, [options.search, options.category, options.orderBy, options.startIndex]);
 
-  return { data, state, error };
+  return { data, state, error, previewData };
 }
 
 export default useBooks;

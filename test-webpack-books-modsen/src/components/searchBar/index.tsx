@@ -20,7 +20,7 @@ const SearchBar: React.FC = () => {
       setSearchInfo({
         search: search.current,
         category: category.current,
-        filter: filter.current,
+        orderBy: filter.current,
         startIndex: 0,
       })
     );

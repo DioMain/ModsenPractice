@@ -3,7 +3,7 @@ class GoogleBooksApiOptions {
   orderBy: string = "relevance";
   category: string = "all";
 
-  startIndex?: number = 0;
+  startIndex: number = 0;
   maxResults?: number = 30;
 }
 
