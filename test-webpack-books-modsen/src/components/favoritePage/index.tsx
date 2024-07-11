@@ -19,7 +19,9 @@ const FavoritePage: React.FC = () => {
   return (
     <div className="favoritepage">
       <h1 className="sawarabi-gothic-regular favoritepage-itemcount">
-        {data.totalItems > 0 ? <>Найдено {data.totalItems}</> : <>Ничего не найдено</>}
+        {state !== LoadState.Loading && (
+          <>{data.totalItems > 0 ? <>Найдено {data.totalItems}</> : <>Ничего не найдено</>}</>
+        )}
       </h1>
       {data.totalItems > 0 && (
         <>

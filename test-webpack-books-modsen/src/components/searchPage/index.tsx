@@ -38,10 +38,12 @@ const SearchPage: React.FC = () => {
       items: [...booksBuffer.current.items, ...loadedBooks.data.items],
     };
   } else if (loadedBooks.state === LoadState.Loading) {
+    const bufferInfo = booksBuffer.current.searchInfo;
+
     if (
-      booksBuffer.current.searchInfo.search !== searchInfo.search ||
-      booksBuffer.current.searchInfo.filter !== searchInfo.filter ||
-      booksBuffer.current.searchInfo.category !== searchInfo.category
+      bufferInfo.search !== searchInfo.search ||
+      bufferInfo.filter !== searchInfo.filter ||
+      bufferInfo.category !== searchInfo.category
     ) {
       booksBuffer.current = { items: [], searchInfo: searchInfo };
     } else {
@@ -55,7 +57,9 @@ const SearchPage: React.FC = () => {
   return (
     <div className="searchpage">
       <h1 className="sawarabi-gothic-regular searchpage-itemcount">
-        {books.current.totalItems > 0 ? <>Найдено {books.current.totalItems}</> : <>Ничего не найдено</>}
+        {loadedBooks.state !== LoadState.Loading && (
+          <>{books.current.totalItems > 0 ? <>Найдено {books.current.totalItems}</> : <>Ничего не найдено</>}</>
+        )}
       </h1>
       {books.current.items.length > 0 && (
         <>
